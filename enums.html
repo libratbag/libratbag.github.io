@@ -1,0 +1,807 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Enumerations &mdash; libratbag  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="libratbag  documentation" href="index.html"/>
+        <link rel="prev" title="DBus API" href="dbus.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> libratbag
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dbus.html">  The DBus Interfaces</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">  Enumerations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ratbag-error-code">ratbag_error_code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ratbag-device-capability">ratbag_device_capability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ratbag-profile-capability">ratbag_profile_capability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ratbag-resolution-capability">ratbag_resolution_capability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ratbag-button-type">ratbag_button_type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ratbag-button-action-type">ratbag_button_action_type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ratbag-button-action-special">ratbag_button_action_special</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ratbag-led-mode">ratbag_led_mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ratbag-led-type">ratbag_led_type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ratbag-led-colordepth">ratbag_led_colordepth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ratbag-macro-event-type">ratbag_macro_event_type</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libratbag</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Enumerations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/enums.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="enumerations">
+<h1>Enumerations<a class="headerlink" href="#enumerations" title="Permalink to this headline">¶</a></h1>
+<p>This document contains the enums used by libratbag&#8217;s DBus interface.</p>
+<div class="section" id="ratbag-error-code">
+<h2>ratbag_error_code<a class="headerlink" href="#ratbag-error-code" title="Permalink to this headline">¶</a></h2>
+<p>Error codes used by libratbag.</p>
+<dl class="enum">
+<dt id="_CPPv217ratbag_error_code">
+<em class="property">enum </em><code class="descclassname"></code><code class="descname">ratbag_error_code</code><a class="headerlink" href="#_CPPv217ratbag_error_code" title="Permalink to this definition">¶</a><br /></dt>
+<dd><dl class="enumerator">
+<dt id="_CPPv2N17ratbag_error_code14RATBAG_SUCCESSE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_SUCCESS</code> = 0<a class="headerlink" href="#_CPPv2N17ratbag_error_code14RATBAG_SUCCESSE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N17ratbag_error_code19RATBAG_ERROR_DEVICEE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_ERROR_DEVICE</code> = -1000<a class="headerlink" href="#_CPPv2N17ratbag_error_code19RATBAG_ERROR_DEVICEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>An error occured on the device.         Either the device is not a libratbag device or communication with the device failed.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N17ratbag_error_code23RATBAG_ERROR_CAPABILITYE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_ERROR_CAPABILITY</code> = -1001<a class="headerlink" href="#_CPPv2N17ratbag_error_code23RATBAG_ERROR_CAPABILITYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Insufficient capabilities.         This error occurs when a requested change is beyond the device&#8217;s capabilities.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N17ratbag_error_code18RATBAG_ERROR_VALUEE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_ERROR_VALUE</code> = -1002<a class="headerlink" href="#_CPPv2N17ratbag_error_code18RATBAG_ERROR_VALUEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Invalid value or value range.         The provided value or value range is outside of the legal or supported range.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N17ratbag_error_code19RATBAG_ERROR_SYSTEME">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_ERROR_SYSTEM</code> = -1003<a class="headerlink" href="#_CPPv2N17ratbag_error_code19RATBAG_ERROR_SYSTEME" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A low-level system error has occured, e.g.         a failure to access files that should be there. This error is usually unrecoverable and libratbag will print a log message with details about the error.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N17ratbag_error_code27RATBAG_ERROR_IMPLEMENTATIONE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_ERROR_IMPLEMENTATION</code> = -1004<a class="headerlink" href="#_CPPv2N17ratbag_error_code27RATBAG_ERROR_IMPLEMENTATIONE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Implementation bug, either in libratbag or in the caller.         This error is usually unrecoverable and libratbag will print a log message with details about the error.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="ratbag-device-capability">
+<h2>ratbag_device_capability<a class="headerlink" href="#ratbag-device-capability" title="Permalink to this headline">¶</a></h2>
+<dl class="enum">
+<dt id="_CPPv224ratbag_device_capability">
+<em class="property">enum </em><code class="descclassname"></code><code class="descname">ratbag_device_capability</code><a class="headerlink" href="#_CPPv224ratbag_device_capability" title="Permalink to this definition">¶</a><br /></dt>
+<dd><dl class="enumerator">
+<dt id="_CPPv2N24ratbag_device_capability22RATBAG_DEVICE_CAP_NONEE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_DEVICE_CAP_NONE</code> = 0<a class="headerlink" href="#_CPPv2N24ratbag_device_capability22RATBAG_DEVICE_CAP_NONEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N24ratbag_device_capability37RATBAG_DEVICE_CAP_QUERY_CONFIGURATIONE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_DEVICE_CAP_QUERY_CONFIGURATION</code><a class="headerlink" href="#_CPPv2N24ratbag_device_capability37RATBAG_DEVICE_CAP_QUERY_CONFIGURATIONE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The device has the capability to query the current hardware configuration.         If this capability is missing, libratbag cannot query the device for its current configuration and the configured resolutions and button mappings are unknown. libratbag will still provide information about the structure of the device such as the number of buttons and resolutions. Clients that encounter a device without this resolution are encouraged to upload a configuration stored on-disk to the device to reset the device to a known state.Any changes uploaded to the device will be cached in libratbag, once a client has sent a full configuration to the device libratbag can be used to query the device as normal.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N24ratbag_device_capability28RATBAG_DEVICE_CAP_RESOLUTIONE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_DEVICE_CAP_RESOLUTION</code> = 100<a class="headerlink" href="#_CPPv2N24ratbag_device_capability28RATBAG_DEVICE_CAP_RESOLUTIONE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The device provides read and/or write access to one or more resolutions.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N24ratbag_device_capability39RATBAG_DEVICE_CAP_SWITCHABLE_RESOLUTIONE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_DEVICE_CAP_SWITCHABLE_RESOLUTION</code><a class="headerlink" href="#_CPPv2N24ratbag_device_capability39RATBAG_DEVICE_CAP_SWITCHABLE_RESOLUTIONE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The device can change resolution, either software-controlled or by a hardware button.         FIXME: what about devices that only have hw buttons? can we query that, even if we can&#8217;t switch it ourselves? Maybe better to have a separate cap for that then.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N24ratbag_device_capability25RATBAG_DEVICE_CAP_PROFILEE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_DEVICE_CAP_PROFILE</code> = 200<a class="headerlink" href="#_CPPv2N24ratbag_device_capability25RATBAG_DEVICE_CAP_PROFILEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The device provides read and/or write access to one or more profiles.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N24ratbag_device_capability36RATBAG_DEVICE_CAP_SWITCHABLE_PROFILEE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_DEVICE_CAP_SWITCHABLE_PROFILE</code><a class="headerlink" href="#_CPPv2N24ratbag_device_capability36RATBAG_DEVICE_CAP_SWITCHABLE_PROFILEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The device can switch between hardware profiles.         A device with this capability can store multiple profiles in the hardware and provides the ability to switch between the profiles, possibly with a button. Devices without this capability will only have a single profile.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N24ratbag_device_capability33RATBAG_DEVICE_CAP_DISABLE_PROFILEE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_DEVICE_CAP_DISABLE_PROFILE</code><a class="headerlink" href="#_CPPv2N24ratbag_device_capability33RATBAG_DEVICE_CAP_DISABLE_PROFILEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The device has the capability to disable and enable profiles.         While profiles are not immediately deleted after being disabled, it is not guaranteed that the device will remember any disabled profiles the next time ratbag runs. Furthermore, the order of profiles may get changed the next time ratbag runs if profiles are disabled.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N24ratbag_device_capability33RATBAG_DEVICE_CAP_DEFAULT_PROFILEE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_DEVICE_CAP_DEFAULT_PROFILE</code><a class="headerlink" href="#_CPPv2N24ratbag_device_capability33RATBAG_DEVICE_CAP_DEFAULT_PROFILEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The device can have one profile assigned as a default profile.         A default profile is the profile that is selected when the device is plugged in. Devices without this capability may select the last-used profile or a specific profile (usually the first).</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N24ratbag_device_capability24RATBAG_DEVICE_CAP_BUTTONE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_DEVICE_CAP_BUTTON</code> = 300<a class="headerlink" href="#_CPPv2N24ratbag_device_capability24RATBAG_DEVICE_CAP_BUTTONE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The device provides read and/or write access to one or more buttons.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N24ratbag_device_capability28RATBAG_DEVICE_CAP_BUTTON_KEYE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_DEVICE_CAP_BUTTON_KEY</code><a class="headerlink" href="#_CPPv2N24ratbag_device_capability28RATBAG_DEVICE_CAP_BUTTON_KEYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The device supports assigning button numbers, key events or key + modifier combinations.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N24ratbag_device_capability31RATBAG_DEVICE_CAP_BUTTON_MACROSE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_DEVICE_CAP_BUTTON_MACROS</code><a class="headerlink" href="#_CPPv2N24ratbag_device_capability31RATBAG_DEVICE_CAP_BUTTON_MACROSE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The device supports user-defined key or button sequences.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N24ratbag_device_capability21RATBAG_DEVICE_CAP_LEDE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_DEVICE_CAP_LED</code> = 400<a class="headerlink" href="#_CPPv2N24ratbag_device_capability21RATBAG_DEVICE_CAP_LEDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The device supports assigning LED colors and effects.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="ratbag-profile-capability">
+<h2>ratbag_profile_capability<a class="headerlink" href="#ratbag-profile-capability" title="Permalink to this headline">¶</a></h2>
+<dl class="enum">
+<dt id="_CPPv225ratbag_profile_capability">
+<em class="property">enum </em><code class="descclassname"></code><code class="descname">ratbag_profile_capability</code><a class="headerlink" href="#_CPPv225ratbag_profile_capability" title="Permalink to this definition">¶</a><br /></dt>
+<dd><dl class="enumerator">
+<dt id="_CPPv2N25ratbag_profile_capability23RATBAG_PROFILE_CAP_NONEE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_PROFILE_CAP_NONE</code> = 0<a class="headerlink" href="#_CPPv2N25ratbag_profile_capability23RATBAG_PROFILE_CAP_NONEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N25ratbag_profile_capability32RATBAG_PROFILE_CAP_WRITABLE_NAMEE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_PROFILE_CAP_WRITABLE_NAME</code> = 100<a class="headerlink" href="#_CPPv2N25ratbag_profile_capability32RATBAG_PROFILE_CAP_WRITABLE_NAMEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The device has the capability to write a name to a profile and store it in its flash.         Any changes uploaded to the device will be cached in libratbag and will be committed to it after a commit only.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="ratbag-resolution-capability">
+<h2>ratbag_resolution_capability<a class="headerlink" href="#ratbag-resolution-capability" title="Permalink to this headline">¶</a></h2>
+<dl class="enum">
+<dt id="_CPPv228ratbag_resolution_capability">
+<em class="property">enum </em><code class="descclassname"></code><code class="descname">ratbag_resolution_capability</code><a class="headerlink" href="#_CPPv228ratbag_resolution_capability" title="Permalink to this definition">¶</a><br /></dt>
+<dd><dl class="enumerator">
+<dt id="_CPPv2N28ratbag_resolution_capability44RATBAG_RESOLUTION_CAP_INDIVIDUAL_REPORT_RATEE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_RESOLUTION_CAP_INDIVIDUAL_REPORT_RATE</code> = 1<a class="headerlink" href="#_CPPv2N28ratbag_resolution_capability44RATBAG_RESOLUTION_CAP_INDIVIDUAL_REPORT_RATEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The report rate can be set per resolution mode.         If this property is not available, all resolutions within the same profile have the same report rate and changing one changes the others.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N28ratbag_resolution_capability44RATBAG_RESOLUTION_CAP_SEPARATE_XY_RESOLUTIONE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_RESOLUTION_CAP_SEPARATE_XY_RESOLUTION</code><a class="headerlink" href="#_CPPv2N28ratbag_resolution_capability44RATBAG_RESOLUTION_CAP_SEPARATE_XY_RESOLUTIONE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The resolution can be set for x and y separately.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="ratbag-button-type">
+<h2>ratbag_button_type<a class="headerlink" href="#ratbag-button-type" title="Permalink to this headline">¶</a></h2>
+<p>Button types describing the physical button.</p>
+<dl class="enum">
+<dt id="_CPPv218ratbag_button_type">
+<em class="property">enum </em><code class="descclassname"></code><code class="descname">ratbag_button_type</code><a class="headerlink" href="#_CPPv218ratbag_button_type" title="Permalink to this definition">¶</a><br /></dt>
+<dd><dl class="enumerator">
+<dt id="_CPPv2N18ratbag_button_type26RATBAG_BUTTON_TYPE_UNKNOWNE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_TYPE_UNKNOWN</code> = 0<a class="headerlink" href="#_CPPv2N18ratbag_button_type26RATBAG_BUTTON_TYPE_UNKNOWNE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N18ratbag_button_type23RATBAG_BUTTON_TYPE_LEFTE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_TYPE_LEFT</code><a class="headerlink" href="#_CPPv2N18ratbag_button_type23RATBAG_BUTTON_TYPE_LEFTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N18ratbag_button_type25RATBAG_BUTTON_TYPE_MIDDLEE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_TYPE_MIDDLE</code><a class="headerlink" href="#_CPPv2N18ratbag_button_type25RATBAG_BUTTON_TYPE_MIDDLEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N18ratbag_button_type24RATBAG_BUTTON_TYPE_RIGHTE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_TYPE_RIGHT</code><a class="headerlink" href="#_CPPv2N18ratbag_button_type24RATBAG_BUTTON_TYPE_RIGHTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N18ratbag_button_type24RATBAG_BUTTON_TYPE_THUMBE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_TYPE_THUMB</code><a class="headerlink" href="#_CPPv2N18ratbag_button_type24RATBAG_BUTTON_TYPE_THUMBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N18ratbag_button_type25RATBAG_BUTTON_TYPE_THUMB2E">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_TYPE_THUMB2</code><a class="headerlink" href="#_CPPv2N18ratbag_button_type25RATBAG_BUTTON_TYPE_THUMB2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N18ratbag_button_type25RATBAG_BUTTON_TYPE_THUMB3E">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_TYPE_THUMB3</code><a class="headerlink" href="#_CPPv2N18ratbag_button_type25RATBAG_BUTTON_TYPE_THUMB3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N18ratbag_button_type25RATBAG_BUTTON_TYPE_THUMB4E">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_TYPE_THUMB4</code><a class="headerlink" href="#_CPPv2N18ratbag_button_type25RATBAG_BUTTON_TYPE_THUMB4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N18ratbag_button_type29RATBAG_BUTTON_TYPE_WHEEL_LEFTE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_TYPE_WHEEL_LEFT</code><a class="headerlink" href="#_CPPv2N18ratbag_button_type29RATBAG_BUTTON_TYPE_WHEEL_LEFTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N18ratbag_button_type30RATBAG_BUTTON_TYPE_WHEEL_RIGHTE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_TYPE_WHEEL_RIGHT</code><a class="headerlink" href="#_CPPv2N18ratbag_button_type30RATBAG_BUTTON_TYPE_WHEEL_RIGHTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N18ratbag_button_type30RATBAG_BUTTON_TYPE_WHEEL_CLICKE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_TYPE_WHEEL_CLICK</code><a class="headerlink" href="#_CPPv2N18ratbag_button_type30RATBAG_BUTTON_TYPE_WHEEL_CLICKE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N18ratbag_button_type27RATBAG_BUTTON_TYPE_WHEEL_UPE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_TYPE_WHEEL_UP</code><a class="headerlink" href="#_CPPv2N18ratbag_button_type27RATBAG_BUTTON_TYPE_WHEEL_UPE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N18ratbag_button_type29RATBAG_BUTTON_TYPE_WHEEL_DOWNE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_TYPE_WHEEL_DOWN</code><a class="headerlink" href="#_CPPv2N18ratbag_button_type29RATBAG_BUTTON_TYPE_WHEEL_DOWNE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N18ratbag_button_type43RATBAG_BUTTON_TYPE_WHEEL_RATCHET_MODE_SHIFTE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_TYPE_WHEEL_RATCHET_MODE_SHIFT</code><a class="headerlink" href="#_CPPv2N18ratbag_button_type43RATBAG_BUTTON_TYPE_WHEEL_RATCHET_MODE_SHIFTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A button to toggle the wheel from free-spinning to click-based.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N18ratbag_button_type24RATBAG_BUTTON_TYPE_EXTRAE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_TYPE_EXTRA</code><a class="headerlink" href="#_CPPv2N18ratbag_button_type24RATBAG_BUTTON_TYPE_EXTRAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N18ratbag_button_type23RATBAG_BUTTON_TYPE_SIDEE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_TYPE_SIDE</code><a class="headerlink" href="#_CPPv2N18ratbag_button_type23RATBAG_BUTTON_TYPE_SIDEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N18ratbag_button_type25RATBAG_BUTTON_TYPE_PINKIEE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_TYPE_PINKIE</code><a class="headerlink" href="#_CPPv2N18ratbag_button_type25RATBAG_BUTTON_TYPE_PINKIEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N18ratbag_button_type26RATBAG_BUTTON_TYPE_PINKIE2E">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_TYPE_PINKIE2</code><a class="headerlink" href="#_CPPv2N18ratbag_button_type26RATBAG_BUTTON_TYPE_PINKIE2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N18ratbag_button_type38RATBAG_BUTTON_TYPE_RESOLUTION_CYCLE_UPE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_TYPE_RESOLUTION_CYCLE_UP</code><a class="headerlink" href="#_CPPv2N18ratbag_button_type38RATBAG_BUTTON_TYPE_RESOLUTION_CYCLE_UPE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N18ratbag_button_type32RATBAG_BUTTON_TYPE_RESOLUTION_UPE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_TYPE_RESOLUTION_UP</code><a class="headerlink" href="#_CPPv2N18ratbag_button_type32RATBAG_BUTTON_TYPE_RESOLUTION_UPE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N18ratbag_button_type34RATBAG_BUTTON_TYPE_RESOLUTION_DOWNE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_TYPE_RESOLUTION_DOWN</code><a class="headerlink" href="#_CPPv2N18ratbag_button_type34RATBAG_BUTTON_TYPE_RESOLUTION_DOWNE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N18ratbag_button_type35RATBAG_BUTTON_TYPE_PROFILE_CYCLE_UPE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_TYPE_PROFILE_CYCLE_UP</code><a class="headerlink" href="#_CPPv2N18ratbag_button_type35RATBAG_BUTTON_TYPE_PROFILE_CYCLE_UPE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N18ratbag_button_type29RATBAG_BUTTON_TYPE_PROFILE_UPE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_TYPE_PROFILE_UP</code><a class="headerlink" href="#_CPPv2N18ratbag_button_type29RATBAG_BUTTON_TYPE_PROFILE_UPE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N18ratbag_button_type31RATBAG_BUTTON_TYPE_PROFILE_DOWNE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_TYPE_PROFILE_DOWN</code><a class="headerlink" href="#_CPPv2N18ratbag_button_type31RATBAG_BUTTON_TYPE_PROFILE_DOWNE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="ratbag-button-action-type">
+<h2>ratbag_button_action_type<a class="headerlink" href="#ratbag-button-action-type" title="Permalink to this headline">¶</a></h2>
+<p>The type assigned to a button.</p>
+<dl class="enum">
+<dt id="_CPPv225ratbag_button_action_type">
+<em class="property">enum </em><code class="descclassname"></code><code class="descname">ratbag_button_action_type</code><a class="headerlink" href="#_CPPv225ratbag_button_action_type" title="Permalink to this definition">¶</a><br /></dt>
+<dd><dl class="enumerator">
+<dt id="_CPPv2N25ratbag_button_action_type30RATBAG_BUTTON_ACTION_TYPE_NONEE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_TYPE_NONE</code> = 0<a class="headerlink" href="#_CPPv2N25ratbag_button_action_type30RATBAG_BUTTON_ACTION_TYPE_NONEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Button is disabled.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N25ratbag_button_action_type32RATBAG_BUTTON_ACTION_TYPE_BUTTONE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_TYPE_BUTTON</code><a class="headerlink" href="#_CPPv2N25ratbag_button_action_type32RATBAG_BUTTON_ACTION_TYPE_BUTTONE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Button sends numeric button events.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N25ratbag_button_action_type33RATBAG_BUTTON_ACTION_TYPE_SPECIALE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_TYPE_SPECIAL</code><a class="headerlink" href="#_CPPv2N25ratbag_button_action_type33RATBAG_BUTTON_ACTION_TYPE_SPECIALE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Button triggers a mouse-specific special function.         This includes resolution changes and profile changes.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N25ratbag_button_action_type29RATBAG_BUTTON_ACTION_TYPE_KEYE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_TYPE_KEY</code><a class="headerlink" href="#_CPPv2N25ratbag_button_action_type29RATBAG_BUTTON_ACTION_TYPE_KEYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Button sends a key or key + modifier combination.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N25ratbag_button_action_type31RATBAG_BUTTON_ACTION_TYPE_MACROE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_TYPE_MACRO</code><a class="headerlink" href="#_CPPv2N25ratbag_button_action_type31RATBAG_BUTTON_ACTION_TYPE_MACROE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Button sends a user-defined key or button sequence.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N25ratbag_button_action_type33RATBAG_BUTTON_ACTION_TYPE_UNKNOWNE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_TYPE_UNKNOWN</code> = 1000<a class="headerlink" href="#_CPPv2N25ratbag_button_action_type33RATBAG_BUTTON_ACTION_TYPE_UNKNOWNE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Button action is unknown.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="ratbag-button-action-special">
+<h2>ratbag_button_action_special<a class="headerlink" href="#ratbag-button-action-special" title="Permalink to this headline">¶</a></h2>
+<dl class="enum">
+<dt id="_CPPv228ratbag_button_action_special">
+<em class="property">enum </em><code class="descclassname"></code><code class="descname">ratbag_button_action_special</code><a class="headerlink" href="#_CPPv228ratbag_button_action_special" title="Permalink to this definition">¶</a><br /></dt>
+<dd><dl class="enumerator">
+<dt id="_CPPv2N28ratbag_button_action_special36RATBAG_BUTTON_ACTION_SPECIAL_INVALIDE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_SPECIAL_INVALID</code> = -1<a class="headerlink" href="#_CPPv2N28ratbag_button_action_special36RATBAG_BUTTON_ACTION_SPECIAL_INVALIDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This button is not set up for a special action.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N28ratbag_button_action_special36RATBAG_BUTTON_ACTION_SPECIAL_UNKNOWNE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_SPECIAL_UNKNOWN</code> = (1 &lt;&lt; 30)<a class="headerlink" href="#_CPPv2N28ratbag_button_action_special36RATBAG_BUTTON_ACTION_SPECIAL_UNKNOWNE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N28ratbag_button_action_special40RATBAG_BUTTON_ACTION_SPECIAL_DOUBLECLICKE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_SPECIAL_DOUBLECLICK</code><a class="headerlink" href="#_CPPv2N28ratbag_button_action_special40RATBAG_BUTTON_ACTION_SPECIAL_DOUBLECLICKE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N28ratbag_button_action_special39RATBAG_BUTTON_ACTION_SPECIAL_WHEEL_LEFTE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_SPECIAL_WHEEL_LEFT</code><a class="headerlink" href="#_CPPv2N28ratbag_button_action_special39RATBAG_BUTTON_ACTION_SPECIAL_WHEEL_LEFTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N28ratbag_button_action_special40RATBAG_BUTTON_ACTION_SPECIAL_WHEEL_RIGHTE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_SPECIAL_WHEEL_RIGHT</code><a class="headerlink" href="#_CPPv2N28ratbag_button_action_special40RATBAG_BUTTON_ACTION_SPECIAL_WHEEL_RIGHTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N28ratbag_button_action_special37RATBAG_BUTTON_ACTION_SPECIAL_WHEEL_UPE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_SPECIAL_WHEEL_UP</code><a class="headerlink" href="#_CPPv2N28ratbag_button_action_special37RATBAG_BUTTON_ACTION_SPECIAL_WHEEL_UPE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N28ratbag_button_action_special39RATBAG_BUTTON_ACTION_SPECIAL_WHEEL_DOWNE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_SPECIAL_WHEEL_DOWN</code><a class="headerlink" href="#_CPPv2N28ratbag_button_action_special39RATBAG_BUTTON_ACTION_SPECIAL_WHEEL_DOWNE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N28ratbag_button_action_special48RATBAG_BUTTON_ACTION_SPECIAL_RATCHET_MODE_SWITCHE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_SPECIAL_RATCHET_MODE_SWITCH</code><a class="headerlink" href="#_CPPv2N28ratbag_button_action_special48RATBAG_BUTTON_ACTION_SPECIAL_RATCHET_MODE_SWITCHE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N28ratbag_button_action_special48RATBAG_BUTTON_ACTION_SPECIAL_RESOLUTION_CYCLE_UPE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_SPECIAL_RESOLUTION_CYCLE_UP</code><a class="headerlink" href="#_CPPv2N28ratbag_button_action_special48RATBAG_BUTTON_ACTION_SPECIAL_RESOLUTION_CYCLE_UPE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N28ratbag_button_action_special50RATBAG_BUTTON_ACTION_SPECIAL_RESOLUTION_CYCLE_DOWNE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_SPECIAL_RESOLUTION_CYCLE_DOWN</code><a class="headerlink" href="#_CPPv2N28ratbag_button_action_special50RATBAG_BUTTON_ACTION_SPECIAL_RESOLUTION_CYCLE_DOWNE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N28ratbag_button_action_special42RATBAG_BUTTON_ACTION_SPECIAL_RESOLUTION_UPE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_SPECIAL_RESOLUTION_UP</code><a class="headerlink" href="#_CPPv2N28ratbag_button_action_special42RATBAG_BUTTON_ACTION_SPECIAL_RESOLUTION_UPE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N28ratbag_button_action_special44RATBAG_BUTTON_ACTION_SPECIAL_RESOLUTION_DOWNE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_SPECIAL_RESOLUTION_DOWN</code><a class="headerlink" href="#_CPPv2N28ratbag_button_action_special44RATBAG_BUTTON_ACTION_SPECIAL_RESOLUTION_DOWNE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N28ratbag_button_action_special49RATBAG_BUTTON_ACTION_SPECIAL_RESOLUTION_ALTERNATEE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_SPECIAL_RESOLUTION_ALTERNATE</code><a class="headerlink" href="#_CPPv2N28ratbag_button_action_special49RATBAG_BUTTON_ACTION_SPECIAL_RESOLUTION_ALTERNATEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N28ratbag_button_action_special47RATBAG_BUTTON_ACTION_SPECIAL_RESOLUTION_DEFAULTE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_SPECIAL_RESOLUTION_DEFAULT</code><a class="headerlink" href="#_CPPv2N28ratbag_button_action_special47RATBAG_BUTTON_ACTION_SPECIAL_RESOLUTION_DEFAULTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N28ratbag_button_action_special45RATBAG_BUTTON_ACTION_SPECIAL_PROFILE_CYCLE_UPE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_SPECIAL_PROFILE_CYCLE_UP</code><a class="headerlink" href="#_CPPv2N28ratbag_button_action_special45RATBAG_BUTTON_ACTION_SPECIAL_PROFILE_CYCLE_UPE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N28ratbag_button_action_special47RATBAG_BUTTON_ACTION_SPECIAL_PROFILE_CYCLE_DOWNE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_SPECIAL_PROFILE_CYCLE_DOWN</code><a class="headerlink" href="#_CPPv2N28ratbag_button_action_special47RATBAG_BUTTON_ACTION_SPECIAL_PROFILE_CYCLE_DOWNE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N28ratbag_button_action_special39RATBAG_BUTTON_ACTION_SPECIAL_PROFILE_UPE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_SPECIAL_PROFILE_UP</code><a class="headerlink" href="#_CPPv2N28ratbag_button_action_special39RATBAG_BUTTON_ACTION_SPECIAL_PROFILE_UPE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N28ratbag_button_action_special41RATBAG_BUTTON_ACTION_SPECIAL_PROFILE_DOWNE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_SPECIAL_PROFILE_DOWN</code><a class="headerlink" href="#_CPPv2N28ratbag_button_action_special41RATBAG_BUTTON_ACTION_SPECIAL_PROFILE_DOWNE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N28ratbag_button_action_special40RATBAG_BUTTON_ACTION_SPECIAL_SECOND_MODEE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_SPECIAL_SECOND_MODE</code><a class="headerlink" href="#_CPPv2N28ratbag_button_action_special40RATBAG_BUTTON_ACTION_SPECIAL_SECOND_MODEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N28ratbag_button_action_special42RATBAG_BUTTON_ACTION_SPECIAL_BATTERY_LEVELE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_BUTTON_ACTION_SPECIAL_BATTERY_LEVEL</code><a class="headerlink" href="#_CPPv2N28ratbag_button_action_special42RATBAG_BUTTON_ACTION_SPECIAL_BATTERY_LEVELE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="ratbag-led-mode">
+<h2>ratbag_led_mode<a class="headerlink" href="#ratbag-led-mode" title="Permalink to this headline">¶</a></h2>
+<p>RATBAG_LED_OFF - led is now off, RATBAG_LED_ON - led is on with static color, RATBAG_LED_CYCLE - led is cycling between all colors. RATBAG_LED_BREATHING - led is pulsating with static colorEach LED mode has different properties, e.g. the brightness and rate are only available in modes RATBAG_LED_CYCLE and RATBAG_LED_BREATHING modes</p>
+<dl class="enum">
+<dt id="_CPPv215ratbag_led_mode">
+<em class="property">enum </em><code class="descclassname"></code><code class="descname">ratbag_led_mode</code><a class="headerlink" href="#_CPPv215ratbag_led_mode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><dl class="enumerator">
+<dt id="_CPPv2N15ratbag_led_mode14RATBAG_LED_OFFE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_LED_OFF</code> = 0<a class="headerlink" href="#_CPPv2N15ratbag_led_mode14RATBAG_LED_OFFE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N15ratbag_led_mode13RATBAG_LED_ONE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_LED_ON</code><a class="headerlink" href="#_CPPv2N15ratbag_led_mode13RATBAG_LED_ONE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N15ratbag_led_mode16RATBAG_LED_CYCLEE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_LED_CYCLE</code><a class="headerlink" href="#_CPPv2N15ratbag_led_mode16RATBAG_LED_CYCLEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N15ratbag_led_mode20RATBAG_LED_BREATHINGE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_LED_BREATHING</code><a class="headerlink" href="#_CPPv2N15ratbag_led_mode20RATBAG_LED_BREATHINGE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="ratbag-led-type">
+<h2>ratbag_led_type<a class="headerlink" href="#ratbag-led-type" title="Permalink to this headline">¶</a></h2>
+<p>LED types, usually based on their physical location.</p>
+<dl class="enum">
+<dt id="_CPPv215ratbag_led_type">
+<em class="property">enum </em><code class="descclassname"></code><code class="descname">ratbag_led_type</code><a class="headerlink" href="#_CPPv215ratbag_led_type" title="Permalink to this definition">¶</a><br /></dt>
+<dd><dl class="enumerator">
+<dt id="_CPPv2N15ratbag_led_type20RATBAG_LED_TYPE_LOGOE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_LED_TYPE_LOGO</code> = 1<a class="headerlink" href="#_CPPv2N15ratbag_led_type20RATBAG_LED_TYPE_LOGOE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N15ratbag_led_type20RATBAG_LED_TYPE_SIDEE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_LED_TYPE_SIDE</code><a class="headerlink" href="#_CPPv2N15ratbag_led_type20RATBAG_LED_TYPE_SIDEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N15ratbag_led_type23RATBAG_LED_TYPE_BATTERYE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_LED_TYPE_BATTERY</code><a class="headerlink" href="#_CPPv2N15ratbag_led_type23RATBAG_LED_TYPE_BATTERYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N15ratbag_led_type19RATBAG_LED_TYPE_DPIE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_LED_TYPE_DPI</code><a class="headerlink" href="#_CPPv2N15ratbag_led_type19RATBAG_LED_TYPE_DPIE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="ratbag-led-colordepth">
+<h2>ratbag_led_colordepth<a class="headerlink" href="#ratbag-led-colordepth" title="Permalink to this headline">¶</a></h2>
+<dl class="enum">
+<dt id="_CPPv221ratbag_led_colordepth">
+<em class="property">enum </em><code class="descclassname"></code><code class="descname">ratbag_led_colordepth</code><a class="headerlink" href="#_CPPv221ratbag_led_colordepth" title="Permalink to this definition">¶</a><br /></dt>
+<dd><dl class="enumerator">
+<dt id="_CPPv2N21ratbag_led_colordepth32RATBAG_LED_COLORDEPTH_MONOCHROMEE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_LED_COLORDEPTH_MONOCHROME</code> = 400<a class="headerlink" href="#_CPPv2N21ratbag_led_colordepth32RATBAG_LED_COLORDEPTH_MONOCHROMEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The device only supports a single color.         All color components should be set to 255.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N21ratbag_led_colordepth29RATBAG_LED_COLORDEPTH_RGB_888E">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_LED_COLORDEPTH_RGB_888</code><a class="headerlink" href="#_CPPv2N21ratbag_led_colordepth29RATBAG_LED_COLORDEPTH_RGB_888E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The device supports RBG color with 8 bits per color.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N21ratbag_led_colordepth29RATBAG_LED_COLORDEPTH_RGB_111E">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_LED_COLORDEPTH_RGB_111</code><a class="headerlink" href="#_CPPv2N21ratbag_led_colordepth29RATBAG_LED_COLORDEPTH_RGB_111E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The device supports RBG colors with 1 bit per color.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="ratbag-macro-event-type">
+<h2>ratbag_macro_event_type<a class="headerlink" href="#ratbag-macro-event-type" title="Permalink to this headline">¶</a></h2>
+<p>Macro event types describing the event.</p>
+<dl class="enum">
+<dt id="_CPPv223ratbag_macro_event_type">
+<em class="property">enum </em><code class="descclassname"></code><code class="descname">ratbag_macro_event_type</code><a class="headerlink" href="#_CPPv223ratbag_macro_event_type" title="Permalink to this definition">¶</a><br /></dt>
+<dd><dl class="enumerator">
+<dt id="_CPPv2N23ratbag_macro_event_type26RATBAG_MACRO_EVENT_INVALIDE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_MACRO_EVENT_INVALID</code> = -1<a class="headerlink" href="#_CPPv2N23ratbag_macro_event_type26RATBAG_MACRO_EVENT_INVALIDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N23ratbag_macro_event_type23RATBAG_MACRO_EVENT_NONEE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_MACRO_EVENT_NONE</code> = 0<a class="headerlink" href="#_CPPv2N23ratbag_macro_event_type23RATBAG_MACRO_EVENT_NONEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N23ratbag_macro_event_type30RATBAG_MACRO_EVENT_KEY_PRESSEDE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_MACRO_EVENT_KEY_PRESSED</code><a class="headerlink" href="#_CPPv2N23ratbag_macro_event_type30RATBAG_MACRO_EVENT_KEY_PRESSEDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N23ratbag_macro_event_type31RATBAG_MACRO_EVENT_KEY_RELEASEDE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_MACRO_EVENT_KEY_RELEASED</code><a class="headerlink" href="#_CPPv2N23ratbag_macro_event_type31RATBAG_MACRO_EVENT_KEY_RELEASEDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv2N23ratbag_macro_event_type23RATBAG_MACRO_EVENT_WAITE">
+<em class="property">enumerator </em><code class="descclassname"></code><code class="descname">RATBAG_MACRO_EVENT_WAIT</code><a class="headerlink" href="#_CPPv2N23ratbag_macro_event_type23RATBAG_MACRO_EVENT_WAITE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="dbus.html" class="btn btn-neutral" title="DBus API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, The ratbaggers.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
