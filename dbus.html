@@ -321,25 +321,25 @@ capabilities.</p>
 <p>This property is mutable if the device supports adding and removing
 profiles.</p>
 <p>Provides the list of profile paths for all profiles on this device, see
-<code class="xref js js-class docutils literal"><span class="pre">Profile()</span></code>.</p>
+<a class="reference internal" href="#Profile" title="Profile"><code class="xref js js-class docutils literal"><span class="pre">Profile()</span></code></a>.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="Commit">
 <code class="descname">Commit</code><span class="sig-paren">(</span><em>) → (</em><span class="sig-paren">)</span><a class="headerlink" href="#Commit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Commits the changes to the device. Changes to the device are batched; they
-are not written to the hardware until <cite>Commit()</cite> is invoked.</p>
+are not written to the hardware until <a class="reference internal" href="#Commit" title="Commit"><code class="xref js js-func docutils literal"><span class="pre">Commit()</span></code></a> is invoked.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="GetSvg">
-<code class="descname">GetSvg</code><span class="sig-paren">(</span><em>theme) → (s</em><span class="sig-paren">)</span><a class="headerlink" href="#GetSvg" title="Permalink to this definition">¶</a></dt>
+<code class="descname">GetSvg</code><span class="sig-paren">(</span><em>s) → (s</em><span class="sig-paren">)</span><a class="headerlink" href="#GetSvg" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
-<li><strong>theme</strong> (<em>s</em>) &#8211; the theme name</li>
+<li><strong>s</strong> &#8211; the theme name</li>
 </ul>
 </td>
 </tr>
@@ -360,16 +360,14 @@ for the given theme.</p>
 <dl class="function">
 <dt id="Resync">
 <code class="descname">Resync</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Resync" title="Permalink to this definition">¶</a></dt>
-<dd><blockquote>
-<div><table class="docutils field-list" frame="void" rules="none">
+<dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">type:</th><td class="field-body">Signal</td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">Signal</td>
 </tr>
 </tbody>
 </table>
-</div></blockquote>
 <p>Emitted when an internal error occurs. Upon receiving this
 signal, clients are expected to resync their values with
 ratbagd.</p>
@@ -381,8 +379,8 @@ ratbagd.</p>
 <div class="section" id="org-freedesktop-ratbag1-profile">
 <h2>org.freedesktop.ratbag1.Profile<a class="headerlink" href="#org-freedesktop-ratbag1-profile" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt>
-<em class="property">class </em><code class="descname">Profiles</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dt id="Profile">
+<em class="property">class </em><code class="descname">Profile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Profile" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="attribute">
 <dt id="Index">
 <code class="descname">Index</code><a class="headerlink" href="#Index" title="Permalink to this definition">¶</a></dt>
@@ -484,7 +482,7 @@ resolutions.</p>
 </tbody>
 </table>
 <p>Provides the object paths of all LEDs in this profile, see
-<code class="xref js js-class docutils literal"><span class="pre">Led()</span></code></p>
+<a class="reference internal" href="#Led" title="Led"><code class="xref js js-class docutils literal"><span class="pre">Led()</span></code></a></p>
 </dd></dl>
 
 <dl class="attribute">
@@ -611,10 +609,27 @@ the default resolution.</p>
 </table>
 <p>uint for the x and y resolution assigned to this entry,
 respectively.  The value for the resolution must be equal to
-or between the <a class="reference internal" href="#Minimum" title="Minimum"><code class="xref js js-attr docutils literal"><span class="pre">Minimum</span></code></a> and <a class="reference internal" href="#Maximum" title="Maximum"><code class="xref js js-attr docutils literal"><span class="pre">Maximum</span></code></a> of
-this resolution.</p>
+one of the values in <a class="reference internal" href="#Resolutions" title="Resolutions"><code class="xref js js-attr docutils literal"><span class="pre">Resolutions</span></code></a>.</p>
 <p>If the resolution does not support separate x/y resolutions,
 x and y must be the same value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">Resolutions</code></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">au</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Flags:</th><td class="field-body">read-only, constant</td>
+</tr>
+</tbody>
+</table>
+<p>A list of permitted resolutions. Values in this list may be used in
+the <a class="reference internal" href="#Resolution" title="Resolution"><code class="xref js js-attr docutils literal"><span class="pre">Resolution</span></code></a> property. This list is always sorted
+ascending, the lowest resolution is the first item in the list.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -634,38 +649,6 @@ x and y must be the same value.</p>
 <p>If the resolution does not have the individual report rate
 capability, changing the report rate on one resolution will
 change the report rate on all resolutions.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="Maximum">
-<code class="descname">Maximum</code><a class="headerlink" href="#Maximum" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">u</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Flags:</th><td class="field-body">read-only, constant</td>
-</tr>
-</tbody>
-</table>
-<p>uint for the maximum resolution</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="Minimum">
-<code class="descname">Minimum</code><a class="headerlink" href="#Minimum" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">u</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Flags:</th><td class="field-body">read-only, constant</td>
-</tr>
-</tbody>
-</table>
-<p>uint for the minimum possible resolution</p>
 </dd></dl>
 
 <dl class="function">
@@ -787,8 +770,9 @@ the device.</p>
 </tbody>
 </table>
 <p>An enum describing the action type of the button, see
-<code class="xref cpp cpp-enum docutils literal"><span class="pre">ratbag_button_get_action_type</span></code> for the list of enums.
-This decides which <code class="xref js js-attr docutils literal"><span class="pre">Mapping</span></code> property has a value.</p>
+<a class="reference internal" href="enums.html#_CPPv225ratbag_button_action_type" title="ratbag_button_action_type"><code class="xref cpp cpp-enum docutils literal"><span class="pre">ratbag_button_action_type</span></code></a> for the list of enums.
+This decides which one of <a class="reference internal" href="#ButtonMapping" title="ButtonMapping"><code class="xref js js-attr docutils literal"><span class="pre">ButtonMapping</span></code></a>,
+<a class="reference internal" href="#SpecialMapping" title="SpecialMapping"><code class="xref js js-attr docutils literal"><span class="pre">SpecialMapping</span></code></a> and <a class="reference internal" href="#Macro" title="Macro"><code class="xref js js-attr docutils literal"><span class="pre">Macro</span></code></a> has a value.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -819,8 +803,10 @@ for ActionType on the current device</p>
 </div>
 <div class="section" id="org-freedesktop-ratbag1-led">
 <h2>org.freedesktop.ratbag1.Led<a class="headerlink" href="#org-freedesktop-ratbag1-led" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><dl class="attribute">
+<dl class="class">
+<dt id="Led">
+<em class="property">class </em><code class="descname">Led</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Led" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
 <dt>
 <code class="descname">Index</code></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
@@ -932,7 +918,8 @@ for ActionType on the current device</p>
 <p>The brightness of the LED, possible values are in the range 0 - 255</p>
 </dd></dl>
 
-</div></blockquote>
+</dd></dl>
+
 <p>For easier debugging, objects paths are constructed from the device. e.g.
 <cite>/org/freedesktop/ratbag/button/event5/p0/b10</cite> is the button interface for
 button 10 on profile 0 on event5. The naming is subject to change. Do not

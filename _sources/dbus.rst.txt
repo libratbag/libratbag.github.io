@@ -113,11 +113,11 @@ org.freedesktop.ratbag1.Device
     .. js:function:: Commit() → ()
 
         Commits the changes to the device. Changes to the device are batched; they
-        are not written to the hardware until `Commit()` is invoked.
+        are not written to the hardware until :js:func:`Commit()` is invoked.
 
-    .. js:function:: GetSvg(theme) → (s)
+    .. js:function:: GetSvg(s) → (s)
 
-        :param s theme: the theme name
+        :param s: the theme name
         :returns: A full path to the SVG for the given theme
 
         Returns the full path to the SVG for the given theme or an
@@ -131,7 +131,7 @@ org.freedesktop.ratbag1.Device
 
     .. js:function:: Resync()
 
-             :type: Signal
+        :type: Signal
 
         Emitted when an internal error occurs. Upon receiving this
         signal, clients are expected to resync their values with
@@ -141,7 +141,7 @@ org.freedesktop.ratbag1.Device
 org.freedesktop.ratbag1.Profile
 -------------------------------
 
-.. js:class:: Profiles
+.. js:class:: Profile
 
     .. js:attribute:: Index
 
@@ -264,11 +264,19 @@ org.freedesktop.ratbag1.Resolution
 
         uint for the x and y resolution assigned to this entry,
         respectively.  The value for the resolution must be equal to
-        or between the :js:attr:`Minimum` and :js:attr:`Maximum` of
-        this resolution.
+        one of the values in :js:attr:`Resolutions`.
 
         If the resolution does not support separate x/y resolutions,
         x and y must be the same value.
+
+    .. js:attribute:: Resolutions
+
+        :type: au
+        :flags: read-only, constant
+
+        A list of permitted resolutions. Values in this list may be used in
+        the :js:attr:`Resolution` property. This list is always sorted
+        ascending, the lowest resolution is the first item in the list.
 
     .. js:attribute:: ReportRate
 
@@ -280,20 +288,6 @@ org.freedesktop.ratbag1.Resolution
         If the resolution does not have the individual report rate
         capability, changing the report rate on one resolution will
         change the report rate on all resolutions.
-
-    .. js:attribute:: Maximum
-
-        :type: u
-        :flags: read-only, constant
-
-        uint for the maximum resolution
-
-    .. js:attribute:: Minimum
-
-        :type: u
-        :flags: read-only, constant
-
-        uint for the minimum possible resolution
 
     .. js:function:: SetDefault() → ()
 
@@ -354,8 +348,9 @@ org.freedesktop.ratbag1.Button
         :flags: read-only, mutable
 
         An enum describing the action type of the button, see
-        :cpp:enum:`ratbag_button_get_action_type` for the list of enums.
-        This decides which :js:attr:`Mapping` property has a value.
+        :cpp:enum:`ratbag_button_action_type` for the list of enums.
+        This decides which one of :js:attr:`ButtonMapping`,
+	:js:attr:`SpecialMapping` and :js:attr:`Macro` has a value.
 
     .. js:attribute:: ActionTypes
 
@@ -371,6 +366,8 @@ org.freedesktop.ratbag1.Button
 
 org.freedesktop.ratbag1.Led
 ---------------------------
+
+.. js:class:: Led
 
     .. js:attribute:: Index
 
