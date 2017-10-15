@@ -425,29 +425,29 @@ ratbag_led_mode
 ---------------------------------------
 
   
-RATBAG_LED_OFF - led is now off, RATBAG_LED_ON - led is on with static color, RATBAG_LED_CYCLE - led is cycling between all colors. RATBAG_LED_BREATHING - led is pulsating with static colorEach LED mode has different properties, e.g. the brightness and rate are only available in modes RATBAG_LED_CYCLE and RATBAG_LED_BREATHING modes 
+Each LED mode has different properties, e.g. the brightness and rate are only available in modes RATBAG_LED_CYCLE and RATBAG_LED_BREATHING modes 
 
 .. cpp:enum:: ratbag_led_mode
 
 
     .. cpp:enumerator:: RATBAG_LED_OFF = 0
 
-
+        led is now off 
 
 
     .. cpp:enumerator:: RATBAG_LED_ON 
 
-
+        led is on with static color 
 
 
     .. cpp:enumerator:: RATBAG_LED_CYCLE 
 
-
+        led is cycling between all colors 
 
 
     .. cpp:enumerator:: RATBAG_LED_BREATHING 
 
-
+        led is pulsating with static color 
 
 ratbag_led_type
 ---------------------------------------
