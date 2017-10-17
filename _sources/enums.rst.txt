@@ -477,6 +477,11 @@ LED types, usually based on their physical location.
 
 
 
+
+    .. cpp:enumerator:: RATBAG_LED_TYPE_WHEEL 
+
+
+
 ratbag_led_colordepth
 ---------------------------------------
 
