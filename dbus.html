@@ -630,6 +630,8 @@ x and y must be the same value.</p>
 <p>A list of permitted resolutions. Values in this list may be used in
 the <a class="reference internal" href="#Resolution" title="Resolution"><code class="xref js js-attr docutils literal"><span class="pre">Resolution</span></code></a> property. This list is always sorted
 ascending, the lowest resolution is the first item in the list.</p>
+<p>This list may be empty if the device does not support reading and/or
+writing to resolutions.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -649,6 +651,26 @@ ascending, the lowest resolution is the first item in the list.</p>
 <p>If the resolution does not have the individual report rate
 capability, changing the report rate on one resolution will
 change the report rate on all resolutions.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ReportRates">
+<code class="descname">ReportRates</code><a class="headerlink" href="#ReportRates" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">au</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Flags:</th><td class="field-body">read-write, constant</td>
+</tr>
+</tbody>
+</table>
+<p>A list of permitted report rates. Values in this list may be used
+in the <a class="reference internal" href="#ReportRate" title="ReportRate"><code class="xref js js-attr docutils literal"><span class="pre">ReportRate</span></code></a> property. This list is always sorted
+ascending, the lowest report rate is the first item in the list.</p>
+<p>This list may be empty if the device does not support reading and/or
+writing to resolutions.</p>
 </dd></dl>
 
 <dl class="function">
