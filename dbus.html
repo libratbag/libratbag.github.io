@@ -25,26 +25,19 @@
   
 
   
-  
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="libratbag  documentation" href="index.html"/>
-        <link rel="next" title="Enumerations" href="enums.html"/>
-        <link rel="prev" title="The libratbag DBus API" href="index.html"/> 
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Enumerations" href="enums.html" />
+    <link rel="prev" title="The libratbag DBus API" href="index.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -109,7 +102,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">libratbag</a>
@@ -117,9 +110,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -176,7 +170,7 @@
 <p>For a list of dbus types as used below, see <a class="reference external" href="https://dbus.freedesktop.org/doc/dbus-specification.html">https://dbus.freedesktop.org/doc/dbus-specification.html</a></p>
 <p>Properties marked as <strong>constant</strong> do not change for the lifetime of the
 object. Properties marked as <strong>mutable</strong> may change, and a
-<code class="docutils literal"><span class="pre">org.freedesktop.DBus.Properties.PropertyChanged</span></code> signal is sent for those
+<code class="docutils literal notranslate"><span class="pre">org.freedesktop.DBus.Properties.PropertyChanged</span></code> signal is sent for those
 unless otherwise specified.</p>
 <p>All setters (whether implicit for read-write properties or explicit) return
 success instead of the internal return value because DBus does not like
@@ -201,7 +195,7 @@ interact with ratbagd.</p>
 </tr>
 </tbody>
 </table>
-<p>An array of read-only <strong>object paths</strong> to <a class="reference internal" href="#Device" title="Device"><code class="xref js js-class docutils literal"><span class="pre">Device()</span></code></a> objects</p>
+<p>An array of read-only <strong>object paths</strong> to <a class="reference internal" href="#Device" title="Device"><code class="xref js js-class docutils literal notranslate"><span class="pre">Device()</span></code></a> objects</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -321,14 +315,14 @@ capabilities.</p>
 <p>This property is mutable if the device supports adding and removing
 profiles.</p>
 <p>Provides the list of profile paths for all profiles on this device, see
-<a class="reference internal" href="#Profile" title="Profile"><code class="xref js js-class docutils literal"><span class="pre">Profile()</span></code></a>.</p>
+<a class="reference internal" href="#Profile" title="Profile"><code class="xref js js-class docutils literal notranslate"><span class="pre">Profile()</span></code></a>.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="Device.Commit">
 <code class="descclassname">Device.</code><code class="descname">Commit</code><span class="sig-paren">(</span><em>) → (</em><span class="sig-paren">)</span><a class="headerlink" href="#Device.Commit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Commits the changes to the device. Changes to the device are batched; they
-are not written to the hardware until <a class="reference internal" href="#Device.Commit" title="Device.Commit"><code class="xref js js-func docutils literal"><span class="pre">Commit()</span></code></a> is invoked.</p>
+are not written to the hardware until <a class="reference internal" href="#Device.Commit" title="Device.Commit"><code class="xref js js-func docutils literal notranslate"><span class="pre">Commit()</span></code></a> is invoked.</p>
 </dd></dl>
 
 <dl class="function">
@@ -350,7 +344,7 @@ are not written to the hardware until <a class="reference internal" href="#Devic
 </table>
 <p>Returns the full path to the SVG for the given theme or an
 empty string if none is available.  The theme must be one of
-<code class="xref js js-attr docutils literal"><span class="pre">Themes</span></code>.</p>
+<code class="xref js js-attr docutils literal notranslate"><span class="pre">Themes</span></code>.</p>
 <p>The theme <strong>‘default’</strong> is guaranteed to be available.
 ratbagd may return the path to a file that doesn’t exist.
 This is the case if the device has SVGs available but not
@@ -428,8 +422,8 @@ ratbagd.</p>
 </table>
 <p>True if this is the profile is enabled, false otherwise.</p>
 <p>Note that a disabled profile might not have correct bindings, so it’s
-a good thing to rebind everything before calling <code class="xref js js-func docutils literal"><span class="pre">Commit()</span></code> on the
-<a class="reference internal" href="#Device" title="Device"><code class="xref js js-class docutils literal"><span class="pre">Device()</span></code></a>.</p>
+a good thing to rebind everything before calling <code class="xref js js-func docutils literal notranslate"><span class="pre">Commit()</span></code> on the
+<a class="reference internal" href="#Device" title="Device"><code class="xref js js-class docutils literal notranslate"><span class="pre">Device()</span></code></a>.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -448,7 +442,7 @@ a good thing to rebind everything before calling <code class="xref js js-func do
 <p>This property is mutable if the device supports adding and removing
 resolutions.</p>
 <p>Provides the object paths of all resolutions in this profile, see
-<a class="reference internal" href="#Resolution" title="Resolution"><code class="xref js js-class docutils literal"><span class="pre">Resolution()</span></code></a></p>
+<a class="reference internal" href="#Resolution" title="Resolution"><code class="xref js js-class docutils literal notranslate"><span class="pre">Resolution()</span></code></a></p>
 </dd></dl>
 
 <dl class="attribute">
@@ -465,7 +459,7 @@ resolutions.</p>
 </tbody>
 </table>
 <p>Provides the object paths of all buttons in this profile, see
-<a class="reference internal" href="#Button" title="Button"><code class="xref js js-class docutils literal"><span class="pre">Button()</span></code></a></p>
+<a class="reference internal" href="#Button" title="Button"><code class="xref js js-class docutils literal notranslate"><span class="pre">Button()</span></code></a></p>
 </dd></dl>
 
 <dl class="attribute">
@@ -482,7 +476,7 @@ resolutions.</p>
 </tbody>
 </table>
 <p>Provides the object paths of all LEDs in this profile, see
-<a class="reference internal" href="#Led" title="Led"><code class="xref js js-class docutils literal"><span class="pre">Led()</span></code></a></p>
+<a class="reference internal" href="#Led" title="Led"><code class="xref js js-class docutils literal notranslate"><span class="pre">Led()</span></code></a></p>
 </dd></dl>
 
 <dl class="attribute">
@@ -501,7 +495,7 @@ resolutions.</p>
 <p>True if this is the currently active profile, false otherwise.</p>
 <p>Profiles can only be set to active, but never to not active - at least one
 profile must be active at all times. This property is read-only, use the
-<a class="reference internal" href="#Profile.SetActive" title="Profile.SetActive"><code class="xref js js-func docutils literal"><span class="pre">SetActive()</span></code></a> method to activate a profile.</p>
+<a class="reference internal" href="#Profile.SetActive" title="Profile.SetActive"><code class="xref js js-func docutils literal notranslate"><span class="pre">SetActive()</span></code></a> method to activate a profile.</p>
 </dd></dl>
 
 <dl class="function">
@@ -567,7 +561,7 @@ profile must be active at all times. This property is read-only, use the
 <p>Resolutions can only be set to active, but never to not
 active - at least one resoultion must be active at all
 times. This property is read-only, use the
-<a class="reference internal" href="#Resolution.SetActive" title="Resolution.SetActive"><code class="xref js js-func docutils literal"><span class="pre">SetActive()</span></code></a> method to set a resolution as the
+<a class="reference internal" href="#Resolution.SetActive" title="Resolution.SetActive"><code class="xref js js-func docutils literal notranslate"><span class="pre">SetActive()</span></code></a> method to set a resolution as the
 active resolution.</p>
 </dd></dl>
 
@@ -590,7 +584,7 @@ resolution capability, this property is always false.</p>
 <p>Resolutions can only be set to default, but never to not
 default - at least one resolution must be default at all
 times. This property is read-only, use the
-<a class="reference internal" href="#Resolution.SetDefault" title="Resolution.SetDefault"><code class="xref js js-func docutils literal"><span class="pre">SetDefault()</span></code></a> method to set a resolution as
+<a class="reference internal" href="#Resolution.SetDefault" title="Resolution.SetDefault"><code class="xref js js-func docutils literal notranslate"><span class="pre">SetDefault()</span></code></a> method to set a resolution as
 the default resolution.</p>
 </dd></dl>
 
@@ -609,7 +603,7 @@ the default resolution.</p>
 </table>
 <p>uint for the x and y resolution assigned to this entry,
 respectively.  The value for the resolution must be equal to
-one of the values in <a class="reference internal" href="#Resolution.Resolutions" title="Resolution.Resolutions"><code class="xref js js-attr docutils literal"><span class="pre">Resolutions</span></code></a>.</p>
+one of the values in <a class="reference internal" href="#Resolution.Resolutions" title="Resolution.Resolutions"><code class="xref js js-attr docutils literal notranslate"><span class="pre">Resolutions</span></code></a>.</p>
 <p>If the resolution does not support separate x/y resolutions,
 x and y must be the same value.</p>
 </dd></dl>
@@ -628,7 +622,7 @@ x and y must be the same value.</p>
 </tbody>
 </table>
 <p>A list of permitted resolutions. Values in this list may be used in
-the <a class="reference internal" href="#Resolution.Resolution" title="Resolution.Resolution"><code class="xref js js-attr docutils literal"><span class="pre">Resolution</span></code></a> property. This list is always sorted
+the <a class="reference internal" href="#Resolution.Resolution" title="Resolution.Resolution"><code class="xref js js-attr docutils literal notranslate"><span class="pre">Resolution</span></code></a> property. This list is always sorted
 ascending, the lowest resolution is the first item in the list.</p>
 <p>This list may be empty if the device does not support reading and/or
 writing to resolutions.</p>
@@ -667,7 +661,7 @@ change the report rate on all resolutions.</p>
 </tbody>
 </table>
 <p>A list of permitted report rates. Values in this list may be used
-in the <a class="reference internal" href="#Resolution.ReportRate" title="Resolution.ReportRate"><code class="xref js js-attr docutils literal"><span class="pre">ReportRate</span></code></a> property. This list is always sorted
+in the <a class="reference internal" href="#Resolution.ReportRate" title="Resolution.ReportRate"><code class="xref js js-attr docutils literal notranslate"><span class="pre">ReportRate</span></code></a> property. This list is always sorted
 ascending, the lowest report rate is the first item in the list.</p>
 <p>This list may be empty if the device does not support reading and/or
 writing to resolutions.</p>
@@ -723,7 +717,7 @@ writing to resolutions.</p>
 </tbody>
 </table>
 <p>Enum describing the button physical type, see
-<a class="reference internal" href="enums.html#_CPPv218ratbag_button_type" title="ratbag_button_type"><code class="xref cpp cpp-enum docutils literal"><span class="pre">ratbag_button_type</span></code></a>. This type is unrelated to the
+<a class="reference internal" href="enums.html#_CPPv318ratbag_button_type" title="ratbag_button_type"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">ratbag_button_type</span></code></a>. This type is unrelated to the
 logical button mapping and serves to easily identify the button on
 the device.</p>
 </dd></dl>
@@ -774,8 +768,8 @@ the device.</p>
 </tbody>
 </table>
 <p>Array of (type, keycode), where type may be one of
-<a class="reference internal" href="enums.html#_CPPv2N23ratbag_macro_event_type30RATBAG_MACRO_EVENT_KEY_PRESSEDE" title="RATBAG_MACRO_EVENT_KEY_PRESSED"><code class="xref cpp cpp-enumerator docutils literal"><span class="pre">RATBAG_MACRO_EVENT_KEY_PRESSED</span></code></a> or
-<a class="reference internal" href="enums.html#_CPPv2N23ratbag_macro_event_type31RATBAG_MACRO_EVENT_KEY_RELEASEDE" title="RATBAG_MACRO_EVENT_KEY_RELEASED"><code class="xref cpp cpp-enumerator docutils literal"><span class="pre">RATBAG_MACRO_EVENT_KEY_RELEASED</span></code></a>.</p>
+<a class="reference internal" href="enums.html#_CPPv3N23ratbag_macro_event_type30RATBAG_MACRO_EVENT_KEY_PRESSEDE" title="RATBAG_MACRO_EVENT_KEY_PRESSED"><code class="xref cpp cpp-enumerator docutils literal notranslate"><span class="pre">RATBAG_MACRO_EVENT_KEY_PRESSED</span></code></a> or
+<a class="reference internal" href="enums.html#_CPPv3N23ratbag_macro_event_type31RATBAG_MACRO_EVENT_KEY_RELEASEDE" title="RATBAG_MACRO_EVENT_KEY_RELEASED"><code class="xref cpp cpp-enumerator docutils literal notranslate"><span class="pre">RATBAG_MACRO_EVENT_KEY_RELEASED</span></code></a>.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -792,9 +786,9 @@ the device.</p>
 </tbody>
 </table>
 <p>An enum describing the action type of the button, see
-<a class="reference internal" href="enums.html#_CPPv225ratbag_button_action_type" title="ratbag_button_action_type"><code class="xref cpp cpp-enum docutils literal"><span class="pre">ratbag_button_action_type</span></code></a> for the list of enums.
-This decides which one of <a class="reference internal" href="#Button.ButtonMapping" title="Button.ButtonMapping"><code class="xref js js-attr docutils literal"><span class="pre">ButtonMapping</span></code></a>,
-<a class="reference internal" href="#Button.SpecialMapping" title="Button.SpecialMapping"><code class="xref js js-attr docutils literal"><span class="pre">SpecialMapping</span></code></a> and <a class="reference internal" href="#Button.Macro" title="Button.Macro"><code class="xref js js-attr docutils literal"><span class="pre">Macro</span></code></a> has a value.</p>
+<a class="reference internal" href="enums.html#_CPPv325ratbag_button_action_type" title="ratbag_button_action_type"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">ratbag_button_action_type</span></code></a> for the list of enums.
+This decides which one of <a class="reference internal" href="#Button.ButtonMapping" title="Button.ButtonMapping"><code class="xref js js-attr docutils literal notranslate"><span class="pre">ButtonMapping</span></code></a>,
+<a class="reference internal" href="#Button.SpecialMapping" title="Button.SpecialMapping"><code class="xref js js-attr docutils literal notranslate"><span class="pre">SpecialMapping</span></code></a> and <a class="reference internal" href="#Button.Macro" title="Button.Macro"><code class="xref js js-attr docutils literal notranslate"><span class="pre">Macro</span></code></a> has a value.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -810,7 +804,7 @@ This decides which one of <a class="reference internal" href="#Button.ButtonMapp
 </tr>
 </tbody>
 </table>
-<p>Array of <a class="reference internal" href="enums.html#_CPPv225ratbag_button_action_type" title="ratbag_button_action_type"><code class="xref cpp cpp-enum docutils literal"><span class="pre">ratbag_button_action_type</span></code></a>, possible values
+<p>Array of <a class="reference internal" href="enums.html#_CPPv325ratbag_button_action_type" title="ratbag_button_action_type"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">ratbag_button_action_type</span></code></a>, possible values
 for ActionType on the current device</p>
 </dd></dl>
 
@@ -967,9 +961,7 @@ rely on a constructed object path in your application.</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -991,7 +983,7 @@ rely on a constructed object path in your application.</p>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1010,6 +1002,7 @@ rely on a constructed object path in your application.</p>
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
             VERSION:'',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -1027,14 +1020,11 @@ rely on a constructed object path in your application.</p>
     <script type="text/javascript" src="_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>
