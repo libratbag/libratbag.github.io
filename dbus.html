@@ -352,6 +352,31 @@ for the given theme.</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="Device.GetSvgFd">
+<code class="descclassname">Device.</code><code class="descname">GetSvgFd</code><span class="sig-paren">(</span><em>s) → (h</em><span class="sig-paren">)</span><a class="headerlink" href="#Device.GetSvgFd" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
+<li><strong>s</strong> – the theme name</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">An open file descriptor to the SVG for the given theme</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns an open file descriptor to the SVG for the given theme or an
+errno on error. The theme must be one of <code class="xref js js-attr docutils literal notranslate"><span class="pre">Themes</span></code>.</p>
+<p>The theme <strong>‘default’</strong> is guaranteed to be available.
+ratbagd may return ENOENT if a file doesn’t exist.
+This is the case if the device has SVGs available but not
+for the given theme.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="Device.Resync">
 <code class="descclassname">Device.</code><code class="descname">Resync</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Device.Resync" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
