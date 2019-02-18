@@ -82,6 +82,11 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">  The DBus Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#notes-on-the-dbus-api">Notes on the DBus API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#types">Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#flags">Flags</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#org-freedesktop-ratbag1-manager">org.freedesktop.ratbag1.Manager</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#org-freedesktop-ratbag1-device">org.freedesktop.ratbag1.Device</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#org-freedesktop-ratbag1-profile">org.freedesktop.ratbag1.Profile</a></li>
@@ -160,37 +165,91 @@
 <p>Note: <strong>the DBus interface is subject to change</strong></p>
 <p>Interfaces:</p>
 <ul class="simple">
-<li>org.freedesktop.ratbag1.Manager</li>
-<li>org.freedesktop.ratbag1.Device</li>
-<li>org.freedesktop.ratbag1.Profile</li>
-<li>org.freedesktop.ratbag1.Resolution</li>
-<li>org.freedesktop.ratbag1.Button</li>
-<li>org.freedesktop.ratbag1.Led</li>
+<li><a class="reference internal" href="#manager"><span class="std std-ref">org.freedesktop.ratbag1.Manager</span></a></li>
+<li><a class="reference internal" href="#device"><span class="std std-ref">org.freedesktop.ratbag1.Device</span></a></li>
+<li><a class="reference internal" href="#profile"><span class="std std-ref">org.freedesktop.ratbag1.Profile</span></a></li>
+<li><a class="reference internal" href="#resolution"><span class="std std-ref">org.freedesktop.ratbag1.Resolution</span></a></li>
+<li><a class="reference internal" href="#button"><span class="std std-ref">org.freedesktop.ratbag1.Button</span></a></li>
+<li><a class="reference internal" href="#led"><span class="std std-ref">org.freedesktop.ratbag1.Led</span></a></li>
 </ul>
-<p>For a list of dbus types as used below, see <a class="reference external" href="https://dbus.freedesktop.org/doc/dbus-specification.html">https://dbus.freedesktop.org/doc/dbus-specification.html</a></p>
+<p>Changing settings on a device is a three-step process:</p>
+<ol class="arabic simple">
+<li>Change the various properties to the desired value</li>
+<li>Invoke <a class="reference internal" href="#Commit" title="Commit"><code class="xref py py-func docutils literal notranslate"><span class="pre">org.freedesktop.ratbag1.Device.Commit()</span></code></a></li>
+<li>Optional: if an error occured writing the new data to the device,
+a <a class="reference internal" href="#Resync" title="Resync"><code class="xref py py-func docutils literal notranslate"><span class="pre">org.freedesktop.ratbag1.Resync</span></code></a> signal is emitted on the device and
+all properties are updated accordingly.</li>
+</ol>
+<p>The time it takes to write settings to a device varies greatly, any caller
+must be prepared to receive a <a class="reference internal" href="#Resync" title="Resync"><code class="xref py py-func docutils literal notranslate"><span class="pre">org.freedesktop.ratbag1.Resync</span></code></a> signal several seconds after
+<a class="reference internal" href="#Commit" title="Commit"><code class="xref py py-func docutils literal notranslate"><span class="pre">org.freedesktop.ratbag1.Device.Commit()</span></code></a>.</p>
+<div class="section" id="notes-on-the-dbus-api">
+<h2>Notes on the DBus API<a class="headerlink" href="#notes-on-the-dbus-api" title="Permalink to this headline">¶</a></h2>
+<p>Values listed as enums are defined in <a class="reference external" href="https://github.com/libratbag/libratbag/blob/master/src/libratbag-enums.h">libratbag-enums.h</a></p>
+<p>For easier debugging, objects paths are constructed from the device. e.g.
+<code class="docutils literal notranslate"><span class="pre">/org/freedesktop/ratbag/button/event5/p0/b10</span></code> is the button interface for
+button 10 on profile 0 on event5. The naming is subject to change. Do not
+rely on a constructed object path in your application.</p>
+<div class="section" id="types">
+<h3>Types<a class="headerlink" href="#types" title="Permalink to this headline">¶</a></h3>
+<p>Types used by these interfaces:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">b</span></code></td>
+<td>Bool</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">o</span></code></td>
+<td>Object path</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">s</span></code></td>
+<td>String</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">u</span></code></td>
+<td>Unsigned 32-bit integer</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">(uuu)</span></code></td>
+<td>Three 32-bit integers</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">ao</span></code></td>
+<td>Array of object paths</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">as</span></code></td>
+<td>Array of strings</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">au</span></code></td>
+<td>Array of 32-bit integers</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">a(uu)</span></code></td>
+<td>Array of 2 32-bit integer tuples</td>
+</tr>
+</tbody>
+</table>
+<p>For details on each type, see the <a class="reference external" href="https://dbus.freedesktop.org/doc/dbus-specification.html">DBus Specification</a>.</p>
+</div>
+<div class="section" id="flags">
+<h3>Flags<a class="headerlink" href="#flags" title="Permalink to this headline">¶</a></h3>
 <p>Properties marked as <strong>constant</strong> do not change for the lifetime of the
 object. Properties marked as <strong>mutable</strong> may change, and a
 <code class="docutils literal notranslate"><span class="pre">org.freedesktop.DBus.Properties.PropertyChanged</span></code> signal is sent for those
 unless otherwise specified.</p>
-<p>Changing settings on a device is a three-step process:</p>
-<ul class="simple">
-<li>change the various properties to the desired value</li>
-<li>invoke <code class="docutils literal notranslate"><span class="pre">org.freedesktop.ratbag1.Device.Commit()</span></code></li>
-<li>optional: if an error occured writing the new data to the device,
-a <code class="docutils literal notranslate"><span class="pre">org.freedesktop.ratbag1.Resync</span></code> signal is emitted on the device and
-all properties are updated accordingly.</li>
-</ul>
-<p>Values listed as enums are defined in <a class="reference external" href="https://github.com/libratbag/libratbag/blob/master/src/libratbag-enums.h">libratbag-enums.h</a></p>
+</div>
+</div>
 <div class="section" id="org-freedesktop-ratbag1-manager">
-<h2>org.freedesktop.ratbag1.Manager<a class="headerlink" href="#org-freedesktop-ratbag1-manager" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="Manager">
-<em class="property">class </em><code class="descname">Manager</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Manager" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <strong>org.freedesktop.ratbag1.Manager</strong> interface is the entry point to
+<span id="manager"></span><h2>org.freedesktop.ratbag1.Manager<a class="headerlink" href="#org-freedesktop-ratbag1-manager" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>org.freedesktop.ratbag1.Manager</strong> interface is the entry point to
 interact with ratbagd.</p>
 <dl class="attribute">
-<dt id="Manager.Devices">
-<code class="descclassname">Manager.</code><code class="descname">Devices</code><a class="headerlink" href="#Manager.Devices" title="Permalink to this definition">¶</a></dt>
+<dt id="Devices">
+<code class="descname">Devices</code><a class="headerlink" href="#Devices" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -199,12 +258,13 @@ interact with ratbagd.</p>
 </tr>
 </tbody>
 </table>
-<p>An array of read-only <strong>object paths</strong> to <a class="reference internal" href="#Device" title="Device"><code class="xref js js-class docutils literal notranslate"><span class="pre">Device()</span></code></a> objects</p>
+<p>An array of read-only <strong>object paths</strong> referencing the available
+devices. The devices implement the <a class="reference internal" href="#device"><span class="std std-ref">org.freedesktop.ratbag1.Device</span></a> interface.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Manager.Themes">
-<code class="descclassname">Manager.</code><code class="descname">Themes</code><a class="headerlink" href="#Manager.Themes" title="Permalink to this definition">¶</a></dt>
+<dt id="Themes">
+<code class="descname">Themes</code><a class="headerlink" href="#Themes" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -215,28 +275,23 @@ interact with ratbagd.</p>
 </tr>
 </tbody>
 </table>
-<p>Provides the list of available theme names. This list is guaranteed to have
-one theme available (‘default’). Other themes are implementation defined.
-A theme listed here is only a guarantee that the theme is known to libratbag
-and that SVGs <em>may</em> exist, it is not a guarantee that the SVG for any
-specific device exists. In other words, a device may not have an SVG for a
-specific theme.</p>
+<p>The list of available theme names. This list is guaranteed to have
+at least one theme available (‘default’). Other themes are
+implementation defined. A theme listed here is only a guarantee
+that the theme is known to libratbag and that SVGs <em>may</em> exist, it
+is not a guarantee that the SVG for any specific device exists. In
+other words, a device may not have an SVG for a specific theme.</p>
 <p>This list is static for the lifetime of ratbagd.</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
 <div class="section" id="org-freedesktop-ratbag1-device">
-<h2>org.freedesktop.ratbag1.Device<a class="headerlink" href="#org-freedesktop-ratbag1-device" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="Device">
-<em class="property">class </em><code class="descname">Device</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Device" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <strong>org.freedesktop.ratbag1.Device</strong> interface describes a single device
+<span id="device"></span><h2>org.freedesktop.ratbag1.Device<a class="headerlink" href="#org-freedesktop-ratbag1-device" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>org.freedesktop.ratbag1.Device</strong> interface describes a single device
 known to ratbagd.</p>
 <dl class="attribute">
-<dt id="Device.Id">
-<code class="descclassname">Device.</code><code class="descname">Id</code><a class="headerlink" href="#Device.Id" title="Permalink to this definition">¶</a></dt>
+<dt id="Id">
+<code class="descname">Id</code><a class="headerlink" href="#Id" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -247,15 +302,15 @@ known to ratbagd.</p>
 </tr>
 </tbody>
 </table>
-<p>An ID describing this device. This ID should not be used for presentation to
-the user. This ID is unique for the device for the lifetime of the device
-but may be recycled when the device is removed. No guarantee is given for
-the content of the ID, the client should treat it as an opaque string.</p>
+<p>A unique ID describing this device. This ID should not be used for presentation to
+the user. This ID may be recycled when the device is removed. The
+content of the ID is undefined, the client should treat it as an
+opaque string.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Device.Description">
-<code class="descclassname">Device.</code><code class="descname">Description</code><a class="headerlink" href="#Device.Description" title="Permalink to this definition">¶</a></dt>
+<dt id="Description">
+<code class="descname">Description</code><a class="headerlink" href="#Description" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -270,8 +325,8 @@ the content of the ID, the client should treat it as an opaque string.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Device.Capabilities">
-<code class="descclassname">Device.</code><code class="descname">Capabilities</code><a class="headerlink" href="#Device.Capabilities" title="Permalink to this definition">¶</a></dt>
+<dt id="Capabilities">
+<code class="descname">Capabilities</code><a class="headerlink" href="#Capabilities" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -288,8 +343,8 @@ capabilities.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Device.Svg">
-<code class="descclassname">Device.</code><code class="descname">Svg</code><a class="headerlink" href="#Device.Svg" title="Permalink to this definition">¶</a></dt>
+<dt id="Svg">
+<code class="descname">Svg</code><a class="headerlink" href="#Svg" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -304,8 +359,8 @@ capabilities.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Device.Profiles">
-<code class="descclassname">Device.</code><code class="descname">Profiles</code><a class="headerlink" href="#Device.Profiles" title="Permalink to this definition">¶</a></dt>
+<dt id="Profiles">
+<code class="descname">Profiles</code><a class="headerlink" href="#Profiles" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -319,36 +374,32 @@ capabilities.</p>
 <p>This property is mutable if the device supports adding and removing
 profiles.</p>
 <p>Provides the list of profile paths for all profiles on this device, see
-<a class="reference internal" href="#Profile" title="Profile"><code class="xref js js-class docutils literal notranslate"><span class="pre">Profile()</span></code></a>.</p>
+<a class="reference internal" href="#profile"><span class="std std-ref">org.freedesktop.ratbag1.Profile</span></a></p>
 </dd></dl>
 
 <dl class="function">
-<dt id="Device.Commit">
-<code class="descclassname">Device.</code><code class="descname">Commit</code><span class="sig-paren">(</span><em>) → (</em><span class="sig-paren">)</span><a class="headerlink" href="#Device.Commit" title="Permalink to this definition">¶</a></dt>
+<dt id="Commit">
+<code class="descname">Commit</code><span class="sig-paren">(</span><em>) → (</em><span class="sig-paren">)</span><a class="headerlink" href="#Commit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Commits the changes to the device. Changes to the device are batched; they
-are not written to the hardware until <a class="reference internal" href="#Device.Commit" title="Device.Commit"><code class="xref js js-func docutils literal notranslate"><span class="pre">Commit()</span></code></a> is invoked.</p>
+are not written to the hardware until <a class="reference internal" href="#Commit" title="Commit"><code class="xref py py-func docutils literal notranslate"><span class="pre">Commit()</span></code></a> is invoked.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="Device.GetSvg">
-<code class="descclassname">Device.</code><code class="descname">GetSvg</code><span class="sig-paren">(</span><em>s) → (s</em><span class="sig-paren">)</span><a class="headerlink" href="#Device.GetSvg" title="Permalink to this definition">¶</a></dt>
+<dt id="GetSvg">
+<code class="descname">GetSvg</code><span class="sig-paren">(</span><em>s) → (s</em><span class="sig-paren">)</span><a class="headerlink" href="#GetSvg" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
-<li><strong>s</strong> – the theme name</li>
-</ul>
-</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>s</strong> – the theme name</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A full path to the SVG for the given theme</p>
-</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A full path to the SVG for the given theme</td>
 </tr>
 </tbody>
 </table>
 <p>Returns the full path to the SVG for the given theme or an
 empty string if none is available.  The theme must be one of
-<code class="xref js js-attr docutils literal notranslate"><span class="pre">Themes</span></code>.</p>
+<a class="reference internal" href="#Themes" title="Themes"><code class="xref py py-func docutils literal notranslate"><span class="pre">org.freedesktop.ratbag1.Manager.Themes</span></code></a>.</p>
 <p>The theme <strong>‘default’</strong> is guaranteed to be available.
 ratbagd may return the path to a file that doesn’t exist.
 This is the case if the device has SVGs available but not
@@ -356,33 +407,30 @@ for the given theme.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="Device.GetSvgFd">
-<code class="descclassname">Device.</code><code class="descname">GetSvgFd</code><span class="sig-paren">(</span><em>s) → (h</em><span class="sig-paren">)</span><a class="headerlink" href="#Device.GetSvgFd" title="Permalink to this definition">¶</a></dt>
+<dt id="GetSvgFd">
+<code class="descname">GetSvgFd</code><span class="sig-paren">(</span><em>s) → (h</em><span class="sig-paren">)</span><a class="headerlink" href="#GetSvgFd" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
-<li><strong>s</strong> – the theme name</li>
-</ul>
-</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>s</strong> – the theme name</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">An open file descriptor to the SVG for the given theme</p>
-</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">An open file descriptor to the SVG for the given theme</td>
 </tr>
 </tbody>
 </table>
 <p>Returns an open file descriptor to the SVG for the given theme or an
-errno on error. The theme must be one of <a class="reference internal" href="#Manager.Themes" title="Manager.Themes"><code class="xref js js-attr docutils literal notranslate"><span class="pre">Manager.Themes</span></code></a>.</p>
+errno on error. The theme must be one of
+<a class="reference internal" href="#Themes" title="Themes"><code class="xref py py-func docutils literal notranslate"><span class="pre">org.freedesktop.ratbag1.Manager.Themes</span></code></a>.</p>
 <p>The theme <strong>‘default’</strong> is guaranteed to be available.
 ratbagd may return ENOENT if a file doesn’t exist.
 This is the case if the device has SVGs available but not
 for the given theme.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="Device.Resync">
-<code class="descclassname">Device.</code><code class="descname">Resync</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Device.Resync" title="Permalink to this definition">¶</a></dt>
+<dl class="exception">
+<dt id="Resync">
+<em class="property">exception </em><code class="descname">Resync</code><a class="headerlink" href="#Resync" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -392,22 +440,17 @@ for the given theme.</p>
 </tbody>
 </table>
 <p>Emitted when an internal error occurs, usually on writing values to
-the device after <a class="reference internal" href="#Device.Commit" title="Device.Commit"><code class="xref js js-func docutils literal notranslate"><span class="pre">Commit()</span></code></a>. Upon receiving this
+the device after <a class="reference internal" href="#Commit" title="Commit"><code class="xref py py-func docutils literal notranslate"><span class="pre">Commit()</span></code></a>. Upon receiving this
 signal, clients are expected to resync their property values with
 ratbagd.</p>
 </dd></dl>
 
-</dd></dl>
-
 </div>
 <div class="section" id="org-freedesktop-ratbag1-profile">
-<h2>org.freedesktop.ratbag1.Profile<a class="headerlink" href="#org-freedesktop-ratbag1-profile" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="Profile">
-<em class="property">class </em><code class="descname">Profile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Profile" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="Profile.Index">
-<code class="descclassname">Profile.</code><code class="descname">Index</code><a class="headerlink" href="#Profile.Index" title="Permalink to this definition">¶</a></dt>
+<span id="profile"></span><h2>org.freedesktop.ratbag1.Profile<a class="headerlink" href="#org-freedesktop-ratbag1-profile" title="Permalink to this headline">¶</a></h2>
+<dl class="attribute">
+<dt id="Index">
+<code class="descname">Index</code><a class="headerlink" href="#Index" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -422,8 +465,8 @@ ratbagd.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Profile.Name">
-<code class="descclassname">Profile.</code><code class="descname">Name</code><a class="headerlink" href="#Profile.Name" title="Permalink to this definition">¶</a></dt>
+<dt id="Name">
+<code class="descname">Name</code><a class="headerlink" href="#Name" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -438,8 +481,8 @@ ratbagd.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Profile.Enabled">
-<code class="descclassname">Profile.</code><code class="descname">Enabled</code><a class="headerlink" href="#Profile.Enabled" title="Permalink to this definition">¶</a></dt>
+<dt id="Enabled">
+<code class="descname">Enabled</code><a class="headerlink" href="#Enabled" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -453,12 +496,12 @@ ratbagd.</p>
 <p>True if this is the profile is enabled, false otherwise.</p>
 <p>Note that a disabled profile might not have correct bindings, so it’s
 a good thing to rebind everything before calling
-<a class="reference internal" href="#Device.Commit" title="Device.Commit"><code class="xref js js-func docutils literal notranslate"><span class="pre">Device.Commit()</span></code></a>.</p>
+<a class="reference internal" href="#Commit" title="Commit"><code class="xref py py-func docutils literal notranslate"><span class="pre">Commit()</span></code></a>.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Profile.Resolutions">
-<code class="descclassname">Profile.</code><code class="descname">Resolutions</code><a class="headerlink" href="#Profile.Resolutions" title="Permalink to this definition">¶</a></dt>
+<dt id="Resolutions">
+<code class="descname">Resolutions</code><a class="headerlink" href="#Resolutions" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -472,12 +515,12 @@ a good thing to rebind everything before calling
 <p>This property is mutable if the device supports adding and removing
 resolutions.</p>
 <p>Provides the object paths of all resolutions in this profile, see
-<a class="reference internal" href="#Resolution" title="Resolution"><code class="xref js js-class docutils literal notranslate"><span class="pre">Resolution()</span></code></a></p>
+<a class="reference internal" href="#resolution"><span class="std std-ref">org.freedesktop.ratbag1.Resolution</span></a>.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Profile.Buttons">
-<code class="descclassname">Profile.</code><code class="descname">Buttons</code><a class="headerlink" href="#Profile.Buttons" title="Permalink to this definition">¶</a></dt>
+<dt id="Buttons">
+<code class="descname">Buttons</code><a class="headerlink" href="#Buttons" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -489,12 +532,12 @@ resolutions.</p>
 </tbody>
 </table>
 <p>Provides the object paths of all buttons in this profile, see
-<a class="reference internal" href="#Button" title="Button"><code class="xref js js-class docutils literal notranslate"><span class="pre">Button()</span></code></a></p>
+<a class="reference internal" href="#button"><span class="std std-ref">org.freedesktop.ratbag1.Button</span></a>.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Profile.Leds">
-<code class="descclassname">Profile.</code><code class="descname">Leds</code><a class="headerlink" href="#Profile.Leds" title="Permalink to this definition">¶</a></dt>
+<dt id="Leds">
+<code class="descname">Leds</code><a class="headerlink" href="#Leds" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -506,12 +549,12 @@ resolutions.</p>
 </tbody>
 </table>
 <p>Provides the object paths of all LEDs in this profile, see
-<a class="reference internal" href="#Led" title="Led"><code class="xref js js-class docutils literal notranslate"><span class="pre">Led()</span></code></a></p>
+<a class="reference internal" href="#led"><span class="std std-ref">org.freedesktop.ratbag1.Led</span></a>.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Profile.IsActive">
-<code class="descclassname">Profile.</code><code class="descname">IsActive</code><a class="headerlink" href="#Profile.IsActive" title="Permalink to this definition">¶</a></dt>
+<dt id="IsActive">
+<code class="descname">IsActive</code><a class="headerlink" href="#IsActive" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -525,26 +568,21 @@ resolutions.</p>
 <p>True if this is the currently active profile, false otherwise.</p>
 <p>Profiles can only be set to active, but never to not active - at least one
 profile must be active at all times. This property is read-only, use the
-<a class="reference internal" href="#Profile.SetActive" title="Profile.SetActive"><code class="xref js js-func docutils literal notranslate"><span class="pre">SetActive()</span></code></a> method to activate a profile.</p>
+<a class="reference internal" href="#SetActive" title="SetActive"><code class="xref py py-func docutils literal notranslate"><span class="pre">SetActive()</span></code></a> method to activate a profile.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="Profile.SetActive">
-<code class="descclassname">Profile.</code><code class="descname">SetActive</code><span class="sig-paren">(</span><em>) → (</em><span class="sig-paren">)</span><a class="headerlink" href="#Profile.SetActive" title="Permalink to this definition">¶</a></dt>
+<dt id="SetActive">
+<code class="descname">SetActive</code><span class="sig-paren">(</span><em>) → (</em><span class="sig-paren">)</span><a class="headerlink" href="#SetActive" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set this profile to be the active profile</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
 <div class="section" id="org-freedesktop-ratbag1-resolution">
-<h2>org.freedesktop.ratbag1.Resolution<a class="headerlink" href="#org-freedesktop-ratbag1-resolution" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="Resolution">
-<em class="property">class </em><code class="descname">Resolution</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Resolution" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="Resolution.Index">
-<code class="descclassname">Resolution.</code><code class="descname">Index</code><a class="headerlink" href="#Resolution.Index" title="Permalink to this definition">¶</a></dt>
+<span id="resolution"></span><h2>org.freedesktop.ratbag1.Resolution<a class="headerlink" href="#org-freedesktop-ratbag1-resolution" title="Permalink to this headline">¶</a></h2>
+<dl class="attribute">
+<dt>
+<code class="descname">Index</code></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -559,8 +597,8 @@ profile must be active at all times. This property is read-only, use the
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Resolution.Capabilities">
-<code class="descclassname">Resolution.</code><code class="descname">Capabilities</code><a class="headerlink" href="#Resolution.Capabilities" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="descname">Capabilities</code></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -571,12 +609,13 @@ profile must be active at all times. This property is read-only, use the
 </tr>
 </tbody>
 </table>
-<p>Array of uints from the ratbag_resolution_capability from libratbag.h.</p>
+<p>Array of uints from the <a class="reference internal" href="enums.html#_CPPv328ratbag_resolution_capability" title="ratbag_resolution_capability"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">ratbag_resolution_capability</span></code></a>
+from libratbag.h.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Resolution.IsActive">
-<code class="descclassname">Resolution.</code><code class="descname">IsActive</code><a class="headerlink" href="#Resolution.IsActive" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="descname">IsActive</code></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -591,13 +630,13 @@ profile must be active at all times. This property is read-only, use the
 <p>Resolutions can only be set to active, but never to not
 active - at least one resoultion must be active at all
 times. This property is read-only, use the
-<a class="reference internal" href="#Resolution.SetActive" title="Resolution.SetActive"><code class="xref js js-func docutils literal notranslate"><span class="pre">SetActive()</span></code></a> method to set a resolution as the
+<a class="reference internal" href="#SetActive" title="SetActive"><code class="xref py py-func docutils literal notranslate"><span class="pre">SetActive()</span></code></a> method to set a resolution as the
 active resolution.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Resolution.IsDefault">
-<code class="descclassname">Resolution.</code><code class="descname">IsDefault</code><a class="headerlink" href="#Resolution.IsDefault" title="Permalink to this definition">¶</a></dt>
+<dt id="IsDefault">
+<code class="descname">IsDefault</code><a class="headerlink" href="#IsDefault" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -614,13 +653,13 @@ resolution capability, this property is always false.</p>
 <p>Resolutions can only be set to default, but never to not
 default - at least one resolution must be default at all
 times. This property is read-only, use the
-<a class="reference internal" href="#Resolution.SetDefault" title="Resolution.SetDefault"><code class="xref js js-func docutils literal notranslate"><span class="pre">SetDefault()</span></code></a> method to set a resolution as
+<a class="reference internal" href="#SetDefault" title="SetDefault"><code class="xref py py-func docutils literal notranslate"><span class="pre">SetDefault()</span></code></a> method to set a resolution as
 the default resolution.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Resolution.Resolution">
-<code class="descclassname">Resolution.</code><code class="descname">Resolution</code><a class="headerlink" href="#Resolution.Resolution" title="Permalink to this definition">¶</a></dt>
+<dt id="Resolution">
+<code class="descname">Resolution</code><a class="headerlink" href="#Resolution" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -633,14 +672,14 @@ the default resolution.</p>
 </table>
 <p>uint for the x and y resolution assigned to this entry,
 respectively.  The value for the resolution must be equal to
-one of the values in <a class="reference internal" href="#Resolution.Resolutions" title="Resolution.Resolutions"><code class="xref js js-attr docutils literal notranslate"><span class="pre">Resolutions</span></code></a>.</p>
+one of the values in <a class="reference internal" href="#Resolutions" title="Resolutions"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Resolutions</span></code></a>.</p>
 <p>If the resolution does not support separate x/y resolutions,
 x and y must be the same value.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Resolution.Resolutions">
-<code class="descclassname">Resolution.</code><code class="descname">Resolutions</code><a class="headerlink" href="#Resolution.Resolutions" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="descname">Resolutions</code></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -652,15 +691,15 @@ x and y must be the same value.</p>
 </tbody>
 </table>
 <p>A list of permitted resolutions. Values in this list may be used in
-the <a class="reference internal" href="#Resolution.Resolution" title="Resolution.Resolution"><code class="xref js js-attr docutils literal notranslate"><span class="pre">Resolution</span></code></a> property. This list is always sorted
+the <a class="reference internal" href="#Resolution" title="Resolution"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Resolution</span></code></a> property. This list is always sorted
 ascending, the lowest resolution is the first item in the list.</p>
 <p>This list may be empty if the device does not support reading and/or
 writing to resolutions.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Resolution.ReportRate">
-<code class="descclassname">Resolution.</code><code class="descname">ReportRate</code><a class="headerlink" href="#Resolution.ReportRate" title="Permalink to this definition">¶</a></dt>
+<dt id="ReportRate">
+<code class="descname">ReportRate</code><a class="headerlink" href="#ReportRate" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -678,8 +717,8 @@ change the report rate on all resolutions.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Resolution.ReportRates">
-<code class="descclassname">Resolution.</code><code class="descname">ReportRates</code><a class="headerlink" href="#Resolution.ReportRates" title="Permalink to this definition">¶</a></dt>
+<dt id="ReportRates">
+<code class="descname">ReportRates</code><a class="headerlink" href="#ReportRates" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -691,35 +730,30 @@ change the report rate on all resolutions.</p>
 </tbody>
 </table>
 <p>A list of permitted report rates. Values in this list may be used
-in the <a class="reference internal" href="#Resolution.ReportRate" title="Resolution.ReportRate"><code class="xref js js-attr docutils literal notranslate"><span class="pre">ReportRate</span></code></a> property. This list is always sorted
+in the <a class="reference internal" href="#ReportRate" title="ReportRate"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ReportRate</span></code></a> property. This list is always sorted
 ascending, the lowest report rate is the first item in the list.</p>
 <p>This list may be empty if the device does not support reading and/or
 writing to resolutions.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="Resolution.SetDefault">
-<code class="descclassname">Resolution.</code><code class="descname">SetDefault</code><span class="sig-paren">(</span><em>) → (</em><span class="sig-paren">)</span><a class="headerlink" href="#Resolution.SetDefault" title="Permalink to this definition">¶</a></dt>
+<dt id="SetDefault">
+<code class="descname">SetDefault</code><span class="sig-paren">(</span><em>) → (</em><span class="sig-paren">)</span><a class="headerlink" href="#SetDefault" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set this resolution to be the default</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="Resolution.SetActive">
-<code class="descclassname">Resolution.</code><code class="descname">SetActive</code><span class="sig-paren">(</span><em>) → (</em><span class="sig-paren">)</span><a class="headerlink" href="#Resolution.SetActive" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="descname">SetActive</code><span class="sig-paren">(</span><em>) → (</em><span class="sig-paren">)</span></dt>
 <dd><p>Set this resolution to be the active one</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
 <div class="section" id="org-freedesktop-ratbag1-button">
-<h2>org.freedesktop.ratbag1.Button<a class="headerlink" href="#org-freedesktop-ratbag1-button" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="Button">
-<em class="property">class </em><code class="descname">Button</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Button" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="Button.Index">
-<code class="descclassname">Button.</code><code class="descname">Index</code><a class="headerlink" href="#Button.Index" title="Permalink to this definition">¶</a></dt>
+<span id="button"></span><h2>org.freedesktop.ratbag1.Button<a class="headerlink" href="#org-freedesktop-ratbag1-button" title="Permalink to this headline">¶</a></h2>
+<dl class="attribute">
+<dt>
+<code class="descname">Index</code></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -734,8 +768,8 @@ writing to resolutions.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Button.Type">
-<code class="descclassname">Button.</code><code class="descname">Type</code><a class="headerlink" href="#Button.Type" title="Permalink to this definition">¶</a></dt>
+<dt id="Type">
+<code class="descname">Type</code><a class="headerlink" href="#Type" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -753,8 +787,8 @@ the device.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Button.ButtonMapping">
-<code class="descclassname">Button.</code><code class="descname">ButtonMapping</code><a class="headerlink" href="#Button.ButtonMapping" title="Permalink to this definition">¶</a></dt>
+<dt id="ButtonMapping">
+<code class="descname">ButtonMapping</code><a class="headerlink" href="#ButtonMapping" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -769,8 +803,8 @@ the device.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Button.SpecialMapping">
-<code class="descclassname">Button.</code><code class="descname">SpecialMapping</code><a class="headerlink" href="#Button.SpecialMapping" title="Permalink to this definition">¶</a></dt>
+<dt id="SpecialMapping">
+<code class="descname">SpecialMapping</code><a class="headerlink" href="#SpecialMapping" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -785,8 +819,8 @@ the device.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Button.Macro">
-<code class="descclassname">Button.</code><code class="descname">Macro</code><a class="headerlink" href="#Button.Macro" title="Permalink to this definition">¶</a></dt>
+<dt id="Macro">
+<code class="descname">Macro</code><a class="headerlink" href="#Macro" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -803,8 +837,8 @@ the device.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Button.ActionType">
-<code class="descclassname">Button.</code><code class="descname">ActionType</code><a class="headerlink" href="#Button.ActionType" title="Permalink to this definition">¶</a></dt>
+<dt id="ActionType">
+<code class="descname">ActionType</code><a class="headerlink" href="#ActionType" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -817,13 +851,13 @@ the device.</p>
 </table>
 <p>An enum describing the action type of the button, see
 <a class="reference internal" href="enums.html#_CPPv325ratbag_button_action_type" title="ratbag_button_action_type"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">ratbag_button_action_type</span></code></a> for the list of enums.
-This decides which one of <a class="reference internal" href="#Button.ButtonMapping" title="Button.ButtonMapping"><code class="xref js js-attr docutils literal notranslate"><span class="pre">ButtonMapping</span></code></a>,
-<a class="reference internal" href="#Button.SpecialMapping" title="Button.SpecialMapping"><code class="xref js js-attr docutils literal notranslate"><span class="pre">SpecialMapping</span></code></a> and <a class="reference internal" href="#Button.Macro" title="Button.Macro"><code class="xref js js-attr docutils literal notranslate"><span class="pre">Macro</span></code></a> has a value.</p>
+This decides which one of <a class="reference internal" href="#ButtonMapping" title="ButtonMapping"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ButtonMapping</span></code></a>,
+<a class="reference internal" href="#SpecialMapping" title="SpecialMapping"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SpecialMapping</span></code></a> and <a class="reference internal" href="#Macro" title="Macro"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Macro</span></code></a> has a value.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Button.ActionTypes">
-<code class="descclassname">Button.</code><code class="descname">ActionTypes</code><a class="headerlink" href="#Button.ActionTypes" title="Permalink to this definition">¶</a></dt>
+<dt id="ActionTypes">
+<code class="descname">ActionTypes</code><a class="headerlink" href="#ActionTypes" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -839,22 +873,17 @@ for ActionType on the current device</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="Button.Disable">
-<code class="descclassname">Button.</code><code class="descname">Disable</code><span class="sig-paren">(</span><em>) → (</em><span class="sig-paren">)</span><a class="headerlink" href="#Button.Disable" title="Permalink to this definition">¶</a></dt>
+<dt id="Disable">
+<code class="descname">Disable</code><span class="sig-paren">(</span><em>) → (</em><span class="sig-paren">)</span><a class="headerlink" href="#Disable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Disable this button</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
 <div class="section" id="org-freedesktop-ratbag1-led">
-<h2>org.freedesktop.ratbag1.Led<a class="headerlink" href="#org-freedesktop-ratbag1-led" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="Led">
-<em class="property">class </em><code class="descname">Led</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Led" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="Led.Index">
-<code class="descclassname">Led.</code><code class="descname">Index</code><a class="headerlink" href="#Led.Index" title="Permalink to this definition">¶</a></dt>
+<span id="led"></span><h2>org.freedesktop.ratbag1.Led<a class="headerlink" href="#org-freedesktop-ratbag1-led" title="Permalink to this headline">¶</a></h2>
+<dl class="attribute">
+<dt>
+<code class="descname">Index</code></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -869,8 +898,8 @@ for ActionType on the current device</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Led.Mode">
-<code class="descclassname">Led.</code><code class="descname">Mode</code><a class="headerlink" href="#Led.Mode" title="Permalink to this definition">¶</a></dt>
+<dt id="Mode">
+<code class="descname">Mode</code><a class="headerlink" href="#Mode" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -885,8 +914,8 @@ for ActionType on the current device</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Led.Modes">
-<code class="descclassname">Led.</code><code class="descname">Modes</code><a class="headerlink" href="#Led.Modes" title="Permalink to this definition">¶</a></dt>
+<dt id="Modes">
+<code class="descname">Modes</code><a class="headerlink" href="#Modes" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -901,8 +930,8 @@ for ActionType on the current device</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Led.Type">
-<code class="descclassname">Led.</code><code class="descname">Type</code><a class="headerlink" href="#Led.Type" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="descname">Type</code></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -917,8 +946,8 @@ for ActionType on the current device</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Led.Color">
-<code class="descclassname">Led.</code><code class="descname">Color</code><a class="headerlink" href="#Led.Color" title="Permalink to this definition">¶</a></dt>
+<dt id="Color">
+<code class="descname">Color</code><a class="headerlink" href="#Color" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -933,8 +962,8 @@ for ActionType on the current device</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Led.ColorDepth">
-<code class="descclassname">Led.</code><code class="descname">ColorDepth</code><a class="headerlink" href="#Led.ColorDepth" title="Permalink to this definition">¶</a></dt>
+<dt id="ColorDepth">
+<code class="descname">ColorDepth</code><a class="headerlink" href="#ColorDepth" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -949,8 +978,8 @@ for ActionType on the current device</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Led.EffectDuration">
-<code class="descclassname">Led.</code><code class="descname">EffectDuration</code><a class="headerlink" href="#Led.EffectDuration" title="Permalink to this definition">¶</a></dt>
+<dt id="EffectDuration">
+<code class="descname">EffectDuration</code><a class="headerlink" href="#EffectDuration" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -965,8 +994,8 @@ for ActionType on the current device</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Led.Brightness">
-<code class="descclassname">Led.</code><code class="descname">Brightness</code><a class="headerlink" href="#Led.Brightness" title="Permalink to this definition">¶</a></dt>
+<dt id="Brightness">
+<code class="descname">Brightness</code><a class="headerlink" href="#Brightness" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -980,12 +1009,6 @@ for ActionType on the current device</p>
 <p>The brightness of the LED, possible values are in the range 0 - 255</p>
 </dd></dl>
 
-</dd></dl>
-
-<p>For easier debugging, objects paths are constructed from the device. e.g.
-<cite>/org/freedesktop/ratbag/button/event5/p0/b10</cite> is the button interface for
-button 10 on profile 0 on event5. The naming is subject to change. Do not
-rely on a constructed object path in your application.</p>
 </div>
 </div>
 
