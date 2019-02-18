@@ -172,10 +172,14 @@
 object. Properties marked as <strong>mutable</strong> may change, and a
 <code class="docutils literal notranslate"><span class="pre">org.freedesktop.DBus.Properties.PropertyChanged</span></code> signal is sent for those
 unless otherwise specified.</p>
-<p>All setters (whether implicit for read-write properties or explicit) return
-success instead of the internal return value because DBus does not like
-non-standard error values. Upon a ratbag error, the <cite>Resync</cite> signal is emitted
-on the device, indicating that clients should resync their values.</p>
+<p>Changing settings on a device is a three-step process:</p>
+<ul class="simple">
+<li>change the various properties to the desired value</li>
+<li>invoke <code class="docutils literal notranslate"><span class="pre">org.freedesktop.ratbag1.Device.Commit()</span></code></li>
+<li>optional: if an error occured writing the new data to the device,
+a <code class="docutils literal notranslate"><span class="pre">org.freedesktop.ratbag1.Resync</span></code> signal is emitted on the device and
+all properties are updated accordingly.</li>
+</ul>
 <p>Values listed as enums are defined in <a class="reference external" href="https://github.com/libratbag/libratbag/blob/master/src/libratbag-enums.h">libratbag-enums.h</a></p>
 <div class="section" id="org-freedesktop-ratbag1-manager">
 <h2>org.freedesktop.ratbag1.Manager<a class="headerlink" href="#org-freedesktop-ratbag1-manager" title="Permalink to this headline">¶</a></h2>
@@ -369,7 +373,7 @@ for the given theme.</p>
 </tbody>
 </table>
 <p>Returns an open file descriptor to the SVG for the given theme or an
-errno on error. The theme must be one of <code class="xref js js-attr docutils literal notranslate"><span class="pre">Themes</span></code>.</p>
+errno on error. The theme must be one of <a class="reference internal" href="#Manager.Themes" title="Manager.Themes"><code class="xref js js-attr docutils literal notranslate"><span class="pre">Manager.Themes</span></code></a>.</p>
 <p>The theme <strong>‘default’</strong> is guaranteed to be available.
 ratbagd may return ENOENT if a file doesn’t exist.
 This is the case if the device has SVGs available but not
@@ -387,8 +391,9 @@ for the given theme.</p>
 </tr>
 </tbody>
 </table>
-<p>Emitted when an internal error occurs. Upon receiving this
-signal, clients are expected to resync their values with
+<p>Emitted when an internal error occurs, usually on writing values to
+the device after <a class="reference internal" href="#Device.Commit" title="Device.Commit"><code class="xref js js-func docutils literal notranslate"><span class="pre">Commit()</span></code></a>. Upon receiving this
+signal, clients are expected to resync their property values with
 ratbagd.</p>
 </dd></dl>
 
@@ -413,7 +418,7 @@ ratbagd.</p>
 </tr>
 </tbody>
 </table>
-<p>The index of this profile</p>
+<p>The zero-based index of this profile</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -447,8 +452,8 @@ ratbagd.</p>
 </table>
 <p>True if this is the profile is enabled, false otherwise.</p>
 <p>Note that a disabled profile might not have correct bindings, so it’s
-a good thing to rebind everything before calling <code class="xref js js-func docutils literal notranslate"><span class="pre">Commit()</span></code> on the
-<a class="reference internal" href="#Device" title="Device"><code class="xref js js-class docutils literal notranslate"><span class="pre">Device()</span></code></a>.</p>
+a good thing to rebind everything before calling
+<a class="reference internal" href="#Device.Commit" title="Device.Commit"><code class="xref js js-func docutils literal notranslate"><span class="pre">Device.Commit()</span></code></a>.</p>
 </dd></dl>
 
 <dl class="attribute">
