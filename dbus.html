@@ -343,22 +343,6 @@ capabilities.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Svg">
-<code class="descname">Svg</code><a class="headerlink" href="#Svg" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">s</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Flags:</th><td class="field-body">read-only, constant</td>
-</tr>
-</tbody>
-</table>
-<p>The device’s SVG file name, without path.</p>
-</dd></dl>
-
-<dl class="attribute">
 <dt id="Profiles">
 <code class="descname">Profiles</code><a class="headerlink" href="#Profiles" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
@@ -382,28 +366,6 @@ profiles.</p>
 <code class="descname">Commit</code><span class="sig-paren">(</span><em>) → (</em><span class="sig-paren">)</span><a class="headerlink" href="#Commit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Commits the changes to the device. Changes to the device are batched; they
 are not written to the hardware until <a class="reference internal" href="#Commit" title="Commit"><code class="xref py py-func docutils literal notranslate"><span class="pre">Commit()</span></code></a> is invoked.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="GetSvg">
-<code class="descname">GetSvg</code><span class="sig-paren">(</span><em>s) → (s</em><span class="sig-paren">)</span><a class="headerlink" href="#GetSvg" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>s</strong> – the theme name</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A full path to the SVG for the given theme</td>
-</tr>
-</tbody>
-</table>
-<p>Returns the full path to the SVG for the given theme or an
-empty string if none is available.  The theme must be one of
-<a class="reference internal" href="#Themes" title="Themes"><code class="xref py py-func docutils literal notranslate"><span class="pre">org.freedesktop.ratbag1.Manager.Themes</span></code></a>.</p>
-<p>The theme <strong>‘default’</strong> is guaranteed to be available.
-ratbagd may return the path to a file that doesn’t exist.
-This is the case if the device has SVGs available but not
-for the given theme.</p>
 </dd></dl>
 
 <dl class="function">
