@@ -217,7 +217,7 @@ rely on a constructed object path in your application.</p>
 <td>Unsigned 32-bit integer</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">(uuu)</span></code></td>
-<td>Three 32-bit integers</td>
+<td>A triplet of 32-bit integers</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">ao</span></code></td>
 <td>Array of object paths</td>
@@ -256,9 +256,11 @@ interact with ratbagd.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">ao</td>
 </tr>
+<tr class="field-even field"><th class="field-name">Flags:</th><td class="field-body">read-only, mutable</td>
+</tr>
 </tbody>
 </table>
-<p>An array of read-only <strong>object paths</strong> referencing the available
+<p>An array of read-only object paths referencing the available
 devices. The devices implement the <a class="reference internal" href="#device"><span class="std std-ref">org.freedesktop.ratbag1.Device</span></a> interface.</p>
 </dd></dl>
 
@@ -277,11 +279,10 @@ devices. The devices implement the <a class="reference internal" href="#device">
 </table>
 <p>The list of available theme names. This list is guaranteed to have
 at least one theme available (‘default’). Other themes are
-implementation defined. A theme listed here is only a guarantee
+implementation-defined. A theme listed here is only a guarantee
 that the theme is known to libratbag and that SVGs <em>may</em> exist, it
 is not a guarantee that the SVG for any specific device exists. In
 other words, a device may not have an SVG for a specific theme.</p>
-<p>This list is static for the lifetime of ratbagd.</p>
 </dd></dl>
 
 </div>
@@ -309,8 +310,8 @@ opaque string.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Description">
-<code class="descname">Description</code><a class="headerlink" href="#Description" title="Permalink to this definition">¶</a></dt>
+<dt id="Name">
+<code class="descname">Name</code><a class="headerlink" href="#Name" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -337,9 +338,9 @@ opaque string.</p>
 </tr>
 </tbody>
 </table>
-<p>The capabilities supported by this device. see <cite>enum
-ratbag_device_capability</cite> in libratbag-enums.h for the list of permissible
-capabilities.</p>
+<p>The capabilities supported by this device. see
+<a class="reference internal" href="enums.html#_CPPv324ratbag_device_capability" title="ratbag_device_capability"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">ratbag_device_capability</span></code></a> in libratbag-enums.h for the
+list of permissible capabilities.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -364,8 +365,10 @@ profiles.</p>
 <dl class="function">
 <dt id="Commit">
 <code class="descname">Commit</code><span class="sig-paren">(</span><em>) → (</em><span class="sig-paren">)</span><a class="headerlink" href="#Commit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Commits the changes to the device. Changes to the device are batched; they
-are not written to the hardware until <a class="reference internal" href="#Commit" title="Commit"><code class="xref py py-func docutils literal notranslate"><span class="pre">Commit()</span></code></a> is invoked.</p>
+<dd><p>Commits the changes to the device. This call always succeeds,
+the data is written to the device asynchronously. Where an error
+occurs, the <a class="reference internal" href="#Resync" title="Resync"><code class="xref py py-func docutils literal notranslate"><span class="pre">Resync()</span></code></a> signal is emitted and all properties are
+updated to the current state.</p>
 </dd></dl>
 
 <dl class="function">
@@ -384,15 +387,15 @@ are not written to the hardware until <a class="reference internal" href="#Commi
 <p>Returns an open file descriptor to the SVG for the given theme or an
 errno on error. The theme must be one of
 <a class="reference internal" href="#Themes" title="Themes"><code class="xref py py-func docutils literal notranslate"><span class="pre">org.freedesktop.ratbag1.Manager.Themes</span></code></a>.</p>
-<p>The theme <strong>‘default’</strong> is guaranteed to be available.
-ratbagd may return ENOENT if a file doesn’t exist.
+<p>The theme <strong>‘default’</strong> is guaranteed to be available.</p>
+<p>ratbagd may return <code class="docutils literal notranslate"><span class="pre">ENOENT</span></code> if a file doesn’t exist.
 This is the case if the device has SVGs available but not
 for the given theme.</p>
 </dd></dl>
 
-<dl class="exception">
+<dl class="function">
 <dt id="Resync">
-<em class="property">exception </em><code class="descname">Resync</code><a class="headerlink" href="#Resync" title="Permalink to this definition">¶</a></dt>
+<code class="descname">Resync</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Resync" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -427,8 +430,8 @@ ratbagd.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="Name">
-<code class="descname">Name</code><a class="headerlink" href="#Name" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="descname">Name</code></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
