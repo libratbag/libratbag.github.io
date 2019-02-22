@@ -264,27 +264,6 @@ interact with ratbagd.</p>
 devices. The devices implement the <a class="reference internal" href="#device"><span class="std std-ref">org.freedesktop.ratbag1.Device</span></a> interface.</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="Themes">
-<code class="descname">Themes</code><a class="headerlink" href="#Themes" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">as</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Flags:</th><td class="field-body">read-only, constant</td>
-</tr>
-</tbody>
-</table>
-<p>The list of available theme names. This list is guaranteed to have
-at least one theme available (‘default’). Other themes are
-implementation-defined. A theme listed here is only a guarantee
-that the theme is known to libratbag and that SVGs <em>may</em> exist, it
-is not a guarantee that the SVG for any specific device exists. In
-other words, a device may not have an SVG for a specific theme.</p>
-</dd></dl>
-
 </div>
 <div class="section" id="org-freedesktop-ratbag1-device">
 <span id="device"></span><h2>org.freedesktop.ratbag1.Device<a class="headerlink" href="#org-freedesktop-ratbag1-device" title="Permalink to this headline">¶</a></h2>
@@ -307,6 +286,51 @@ known to ratbagd.</p>
 the user. This ID may be recycled when the device is removed. The
 content of the ID is undefined, the client should treat it as an
 opaque string.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Model">
+<code class="descname">Model</code><a class="headerlink" href="#Model" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">s</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Flags:</th><td class="field-body">read-only, constant</td>
+</tr>
+</tbody>
+</table>
+<p>An ID identifying the physical device model. This string is
+guaranteed to be unique for a specific model and always identical
+for devices of that model.</p>
+<p>This is a string of one of the following formats:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">usb:1234:abcd:0</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">bluetooth:5678:ef01:0</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">unknown</span></code></li>
+</ul>
+<p>In the future, other formats may get added. Clients must ignore
+unknown string formats.</p>
+<p>For a string starting with <cite>usb:</cite>, the format is the bus type (USB)
+followed by a 4-digit lowercase hex USB vendor ID, followed by a
+4-digit lowercase hex USB product ID, followed by an decimal version
+number of unspecified length. These four elements are separated by a
+colon (<code class="docutils literal notranslate"><span class="pre">:</span></code>).</p>
+<p>For a string starting with <cite>bluetooth:</cite>, the format is the bus type
+(Bluetooth) followed by a 4-digit lowercase hex Bluetooth vendor ID,
+followed by a 4-digit lowercase hex Bluetooth product ID, followed
+by an decimal version number of unspecified length. These four
+elements are separated by a colon (<code class="docutils literal notranslate"><span class="pre">:</span></code>).</p>
+<p>For the string <code class="docutils literal notranslate"><span class="pre">unknown</span></code>, the model of the device cannot be
+determined. This is usually a bug in libratbag.</p>
+<p>For <code class="docutils literal notranslate"><span class="pre">DeviceId``s</span> <span class="pre">of</span> <span class="pre">type</span> <span class="pre">``usb</span></code> and <code class="docutils literal notranslate"><span class="pre">bluetooth</span></code>, the version
+number is reserved for use by libratbag. Device with identical
+vendor and product IDs but different versions must be considered
+different devices. For example, the version may increase when a
+manufacturer re-uses USB Ids.</p>
+<p>Vendor or product IDs of 0 are valid IDs (e.g. used used by test
+devices).</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -369,28 +393,6 @@ profiles.</p>
 the data is written to the device asynchronously. Where an error
 occurs, the <a class="reference internal" href="#Resync" title="Resync"><code class="xref py py-func docutils literal notranslate"><span class="pre">Resync()</span></code></a> signal is emitted and all properties are
 updated to the current state.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="GetSvgFd">
-<code class="descname">GetSvgFd</code><span class="sig-paren">(</span><em>s) → (h</em><span class="sig-paren">)</span><a class="headerlink" href="#GetSvgFd" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>s</strong> – the theme name</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">An open file descriptor to the SVG for the given theme</td>
-</tr>
-</tbody>
-</table>
-<p>Returns an open file descriptor to the SVG for the given theme or an
-errno on error. The theme must be one of
-<a class="reference internal" href="#Themes" title="Themes"><code class="xref py py-func docutils literal notranslate"><span class="pre">org.freedesktop.ratbag1.Manager.Themes</span></code></a>.</p>
-<p>The theme <strong>‘default’</strong> is guaranteed to be available.</p>
-<p>ratbagd may return <code class="docutils literal notranslate"><span class="pre">ENOENT</span></code> if a file doesn’t exist.
-This is the case if the device has SVGs available but not
-for the given theme.</p>
 </dd></dl>
 
 <dl class="function">
