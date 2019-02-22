@@ -93,7 +93,7 @@ ratbag_button_type
 ---------------------------------------
 
   
-Button types describing the physical button. 
+Button types describing the physical button. This enum is deprecated and should not be used.Deprecated
 
 .. cpp:enum:: ratbag_button_type
 
@@ -395,7 +395,7 @@ ratbag_led_type
 ---------------------------------------
 
   
-LED types, usually based on their physical location. 
+LED types, usually based on their physical location. This enum is deprecated and should not be used.Deprecated
 
 .. cpp:enum:: ratbag_led_type
 
