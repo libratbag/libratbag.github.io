@@ -83,7 +83,6 @@
 <li class="toctree-l1"><a class="reference internal" href="dbus.html">  The DBus Interfaces</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">  Enumerations</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#ratbag-error-code">ratbag_error_code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ratbag-device-capability">ratbag_device_capability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ratbag-profile-capability">ratbag_profile_capability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ratbag-resolution-capability">ratbag_resolution_capability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ratbag-button-type">ratbag_button_type</a></li>
@@ -206,85 +205,6 @@
 </dd></dl>
 
 </div>
-<div class="section" id="ratbag-device-capability">
-<h2>ratbag_device_capability<a class="headerlink" href="#ratbag-device-capability" title="Permalink to this headline">¶</a></h2>
-<dl class="enum">
-<dt id="_CPPv324ratbag_device_capability">
-<span id="_CPPv224ratbag_device_capability"></span><em class="property">enum </em><code class="descname">ratbag_device_capability</code><a class="headerlink" href="#_CPPv324ratbag_device_capability" title="Permalink to this definition">¶</a><br /></dt>
-<dd><dl class="enumerator">
-<dt id="_CPPv3N24ratbag_device_capability22RATBAG_DEVICE_CAP_NONEE">
-<span id="_CPPv2N24ratbag_device_capability22RATBAG_DEVICE_CAP_NONEE"></span><em class="property">enumerator </em><code class="descname">RATBAG_DEVICE_CAP_NONE</code> = 0<a class="headerlink" href="#_CPPv3N24ratbag_device_capability22RATBAG_DEVICE_CAP_NONEE" title="Permalink to this definition">¶</a><br /></dt>
-<dd></dd></dl>
-
-<dl class="enumerator">
-<dt id="_CPPv3N24ratbag_device_capability37RATBAG_DEVICE_CAP_QUERY_CONFIGURATIONE">
-<span id="_CPPv2N24ratbag_device_capability37RATBAG_DEVICE_CAP_QUERY_CONFIGURATIONE"></span><em class="property">enumerator </em><code class="descname">RATBAG_DEVICE_CAP_QUERY_CONFIGURATION</code><a class="headerlink" href="#_CPPv3N24ratbag_device_capability37RATBAG_DEVICE_CAP_QUERY_CONFIGURATIONE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>The device has the capability to query the current hardware configuration.         If this capability is missing, libratbag cannot query the device for its current configuration and the configured resolutions and button mappings are unknown. libratbag will still provide information about the structure of the device such as the number of buttons and resolutions. Clients that encounter a device without this resolution are encouraged to upload a configuration stored on-disk to the device to reset the device to a known state.Any changes uploaded to the device will be cached in libratbag, once a client has sent a full configuration to the device libratbag can be used to query the device as normal.</p>
-</dd></dl>
-
-<dl class="enumerator">
-<dt id="_CPPv3N24ratbag_device_capability28RATBAG_DEVICE_CAP_RESOLUTIONE">
-<span id="_CPPv2N24ratbag_device_capability28RATBAG_DEVICE_CAP_RESOLUTIONE"></span><em class="property">enumerator </em><code class="descname">RATBAG_DEVICE_CAP_RESOLUTION</code> = 100<a class="headerlink" href="#_CPPv3N24ratbag_device_capability28RATBAG_DEVICE_CAP_RESOLUTIONE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>The device provides read and/or write access to one or more resolutions.</p>
-</dd></dl>
-
-<dl class="enumerator">
-<dt id="_CPPv3N24ratbag_device_capability39RATBAG_DEVICE_CAP_SWITCHABLE_RESOLUTIONE">
-<span id="_CPPv2N24ratbag_device_capability39RATBAG_DEVICE_CAP_SWITCHABLE_RESOLUTIONE"></span><em class="property">enumerator </em><code class="descname">RATBAG_DEVICE_CAP_SWITCHABLE_RESOLUTION</code><a class="headerlink" href="#_CPPv3N24ratbag_device_capability39RATBAG_DEVICE_CAP_SWITCHABLE_RESOLUTIONE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>The device can change resolution, either software-controlled or by a hardware button.         FIXME: what about devices that only have hw buttons? can we query that, even if we can’t switch it ourselves? Maybe better to have a separate cap for that then.</p>
-</dd></dl>
-
-<dl class="enumerator">
-<dt id="_CPPv3N24ratbag_device_capability25RATBAG_DEVICE_CAP_PROFILEE">
-<span id="_CPPv2N24ratbag_device_capability25RATBAG_DEVICE_CAP_PROFILEE"></span><em class="property">enumerator </em><code class="descname">RATBAG_DEVICE_CAP_PROFILE</code> = 200<a class="headerlink" href="#_CPPv3N24ratbag_device_capability25RATBAG_DEVICE_CAP_PROFILEE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>The device provides read and/or write access to one or more profiles.</p>
-</dd></dl>
-
-<dl class="enumerator">
-<dt id="_CPPv3N24ratbag_device_capability36RATBAG_DEVICE_CAP_SWITCHABLE_PROFILEE">
-<span id="_CPPv2N24ratbag_device_capability36RATBAG_DEVICE_CAP_SWITCHABLE_PROFILEE"></span><em class="property">enumerator </em><code class="descname">RATBAG_DEVICE_CAP_SWITCHABLE_PROFILE</code><a class="headerlink" href="#_CPPv3N24ratbag_device_capability36RATBAG_DEVICE_CAP_SWITCHABLE_PROFILEE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>The device can switch between hardware profiles.         A device with this capability can store multiple profiles in the hardware and provides the ability to switch between the profiles, possibly with a button. Devices without this capability will only have a single profile.</p>
-</dd></dl>
-
-<dl class="enumerator">
-<dt id="_CPPv3N24ratbag_device_capability33RATBAG_DEVICE_CAP_DISABLE_PROFILEE">
-<span id="_CPPv2N24ratbag_device_capability33RATBAG_DEVICE_CAP_DISABLE_PROFILEE"></span><em class="property">enumerator </em><code class="descname">RATBAG_DEVICE_CAP_DISABLE_PROFILE</code><a class="headerlink" href="#_CPPv3N24ratbag_device_capability33RATBAG_DEVICE_CAP_DISABLE_PROFILEE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>The device has the capability to disable and enable profiles.         While profiles are not immediately deleted after being disabled, it is not guaranteed that the device will remember any disabled profiles the next time ratbag runs. Furthermore, the order of profiles may get changed the next time ratbag runs if profiles are disabled.</p>
-</dd></dl>
-
-<dl class="enumerator">
-<dt id="_CPPv3N24ratbag_device_capability33RATBAG_DEVICE_CAP_DEFAULT_PROFILEE">
-<span id="_CPPv2N24ratbag_device_capability33RATBAG_DEVICE_CAP_DEFAULT_PROFILEE"></span><em class="property">enumerator </em><code class="descname">RATBAG_DEVICE_CAP_DEFAULT_PROFILE</code><a class="headerlink" href="#_CPPv3N24ratbag_device_capability33RATBAG_DEVICE_CAP_DEFAULT_PROFILEE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>The device can have one profile assigned as a default profile.         A default profile is the profile that is selected when the device is plugged in. Devices without this capability may select the last-used profile or a specific profile (usually the first).</p>
-</dd></dl>
-
-<dl class="enumerator">
-<dt id="_CPPv3N24ratbag_device_capability24RATBAG_DEVICE_CAP_BUTTONE">
-<span id="_CPPv2N24ratbag_device_capability24RATBAG_DEVICE_CAP_BUTTONE"></span><em class="property">enumerator </em><code class="descname">RATBAG_DEVICE_CAP_BUTTON</code> = 300<a class="headerlink" href="#_CPPv3N24ratbag_device_capability24RATBAG_DEVICE_CAP_BUTTONE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>The device provides read and/or write access to one or more buttons.</p>
-</dd></dl>
-
-<dl class="enumerator">
-<dt id="_CPPv3N24ratbag_device_capability28RATBAG_DEVICE_CAP_BUTTON_KEYE">
-<span id="_CPPv2N24ratbag_device_capability28RATBAG_DEVICE_CAP_BUTTON_KEYE"></span><em class="property">enumerator </em><code class="descname">RATBAG_DEVICE_CAP_BUTTON_KEY</code><a class="headerlink" href="#_CPPv3N24ratbag_device_capability28RATBAG_DEVICE_CAP_BUTTON_KEYE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>The device supports assigning button numbers, key events or key + modifier combinations.</p>
-</dd></dl>
-
-<dl class="enumerator">
-<dt id="_CPPv3N24ratbag_device_capability31RATBAG_DEVICE_CAP_BUTTON_MACROSE">
-<span id="_CPPv2N24ratbag_device_capability31RATBAG_DEVICE_CAP_BUTTON_MACROSE"></span><em class="property">enumerator </em><code class="descname">RATBAG_DEVICE_CAP_BUTTON_MACROS</code><a class="headerlink" href="#_CPPv3N24ratbag_device_capability31RATBAG_DEVICE_CAP_BUTTON_MACROSE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>The device supports user-defined key or button sequences.</p>
-</dd></dl>
-
-<dl class="enumerator">
-<dt id="_CPPv3N24ratbag_device_capability21RATBAG_DEVICE_CAP_LEDE">
-<span id="_CPPv2N24ratbag_device_capability21RATBAG_DEVICE_CAP_LEDE"></span><em class="property">enumerator </em><code class="descname">RATBAG_DEVICE_CAP_LED</code> = 400<a class="headerlink" href="#_CPPv3N24ratbag_device_capability21RATBAG_DEVICE_CAP_LEDE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>The device supports assigning LED colors and effects.</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
 <div class="section" id="ratbag-profile-capability">
 <h2>ratbag_profile_capability<a class="headerlink" href="#ratbag-profile-capability" title="Permalink to this headline">¶</a></h2>
 <dl class="enum">
@@ -296,9 +216,21 @@
 <dd></dd></dl>
 
 <dl class="enumerator">
-<dt id="_CPPv3N25ratbag_profile_capability32RATBAG_PROFILE_CAP_WRITABLE_NAMEE">
-<span id="_CPPv2N25ratbag_profile_capability32RATBAG_PROFILE_CAP_WRITABLE_NAMEE"></span><em class="property">enumerator </em><code class="descname">RATBAG_PROFILE_CAP_WRITABLE_NAME</code> = 100<a class="headerlink" href="#_CPPv3N25ratbag_profile_capability32RATBAG_PROFILE_CAP_WRITABLE_NAMEE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>The device has the capability to write a name to a profile and store it in its flash.         Any changes uploaded to the device will be cached in libratbag and will be committed to it after a commit only.</p>
+<dt id="_CPPv3N25ratbag_profile_capability30RATBAG_PROFILE_CAP_SET_DEFAULTE">
+<span id="_CPPv2N25ratbag_profile_capability30RATBAG_PROFILE_CAP_SET_DEFAULTE"></span><em class="property">enumerator </em><code class="descname">RATBAG_PROFILE_CAP_SET_DEFAULT</code> = 101<a class="headerlink" href="#_CPPv3N25ratbag_profile_capability30RATBAG_PROFILE_CAP_SET_DEFAULTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This profile can be assigned as the default profile.         A default profile is the profile that is selected when the device is plugged in. Where no profile is assigned as the default profile, the device either picks last-used profile or a specific profile (usually the first).</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv3N25ratbag_profile_capability26RATBAG_PROFILE_CAP_DISABLEE">
+<span id="_CPPv2N25ratbag_profile_capability26RATBAG_PROFILE_CAP_DISABLEE"></span><em class="property">enumerator </em><code class="descname">RATBAG_PROFILE_CAP_DISABLE</code><a class="headerlink" href="#_CPPv3N25ratbag_profile_capability26RATBAG_PROFILE_CAP_DISABLEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The profile can be disabled and enabled.         Profiles are not immediately deleted after being disabled, it is not guaranteed that the device will remember any disabled profiles the next time ratbag runs. Furthermore, the order of profiles may get changed the next time ratbag runs if profiles are disabled.Note that this capability only notes the general capability. A specific profile may still fail to be disabled, e.g. when it is the last enabled profile on the device.</p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv3N25ratbag_profile_capability29RATBAG_PROFILE_CAP_WRITE_ONLYE">
+<span id="_CPPv2N25ratbag_profile_capability29RATBAG_PROFILE_CAP_WRITE_ONLYE"></span><em class="property">enumerator </em><code class="descname">RATBAG_PROFILE_CAP_WRITE_ONLY</code><a class="headerlink" href="#_CPPv3N25ratbag_profile_capability29RATBAG_PROFILE_CAP_WRITE_ONLYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The profile information cannot be queried from the hardware.         Where this capability is present, libratbag cannot query the device for its current configuration and the configured resolutions and button mappings are unknown. libratbag will still provide information about the structure of the device such as the number of buttons and resolutions. Clients that encounter a device without this resolution are encouraged to upload a configuration stored on-disk to the device to reset the device to a known state.Any changes uploaded to the device will be cached in libratbag, once a client has sent a full configuration to the device libratbag can be used to query the device as normal.</p>
 </dd></dl>
 
 </dd></dl>

@@ -43,74 +43,6 @@ Error codes used by libratbag.
 
         Implementation bug, either in libratbag or in the caller.         This error is usually unrecoverable and libratbag will print a log message with details about the error. 
 
-ratbag_device_capability
----------------------------------------
-
-  
-
-
-.. cpp:enum:: ratbag_device_capability
-
-
-    .. cpp:enumerator:: RATBAG_DEVICE_CAP_NONE = 0
-
-
-
-
-    .. cpp:enumerator:: RATBAG_DEVICE_CAP_QUERY_CONFIGURATION 
-
-        The device has the capability to query the current hardware configuration.         If this capability is missing, libratbag cannot query the device for its current configuration and the configured resolutions and button mappings are unknown. libratbag will still provide information about the structure of the device such as the number of buttons and resolutions. Clients that encounter a device without this resolution are encouraged to upload a configuration stored on-disk to the device to reset the device to a known state.Any changes uploaded to the device will be cached in libratbag, once a client has sent a full configuration to the device libratbag can be used to query the device as normal. 
-
-
-    .. cpp:enumerator:: RATBAG_DEVICE_CAP_RESOLUTION = 100
-
-        The device provides read and/or write access to one or more resolutions. 
-
-
-    .. cpp:enumerator:: RATBAG_DEVICE_CAP_SWITCHABLE_RESOLUTION 
-
-        The device can change resolution, either software-controlled or by a hardware button.         FIXME: what about devices that only have hw buttons? can we query that, even if we can't switch it ourselves? Maybe better to have a separate cap for that then. 
-
-
-    .. cpp:enumerator:: RATBAG_DEVICE_CAP_PROFILE = 200
-
-        The device provides read and/or write access to one or more profiles. 
-
-
-    .. cpp:enumerator:: RATBAG_DEVICE_CAP_SWITCHABLE_PROFILE 
-
-        The device can switch between hardware profiles.         A device with this capability can store multiple profiles in the hardware and provides the ability to switch between the profiles, possibly with a button. Devices without this capability will only have a single profile. 
-
-
-    .. cpp:enumerator:: RATBAG_DEVICE_CAP_DISABLE_PROFILE 
-
-        The device has the capability to disable and enable profiles.         While profiles are not immediately deleted after being disabled, it is not guaranteed that the device will remember any disabled profiles the next time ratbag runs. Furthermore, the order of profiles may get changed the next time ratbag runs if profiles are disabled. 
-
-
-    .. cpp:enumerator:: RATBAG_DEVICE_CAP_DEFAULT_PROFILE 
-
-        The device can have one profile assigned as a default profile.         A default profile is the profile that is selected when the device is plugged in. Devices without this capability may select the last-used profile or a specific profile (usually the first). 
-
-
-    .. cpp:enumerator:: RATBAG_DEVICE_CAP_BUTTON = 300
-
-        The device provides read and/or write access to one or more buttons. 
-
-
-    .. cpp:enumerator:: RATBAG_DEVICE_CAP_BUTTON_KEY 
-
-        The device supports assigning button numbers, key events or key + modifier combinations. 
-
-
-    .. cpp:enumerator:: RATBAG_DEVICE_CAP_BUTTON_MACROS 
-
-        The device supports user-defined key or button sequences. 
-
-
-    .. cpp:enumerator:: RATBAG_DEVICE_CAP_LED = 400
-
-        The device supports assigning LED colors and effects. 
-
 ratbag_profile_capability
 ---------------------------------------
 
@@ -125,9 +57,19 @@ ratbag_profile_capability
 
 
 
-    .. cpp:enumerator:: RATBAG_PROFILE_CAP_WRITABLE_NAME = 100
+    .. cpp:enumerator:: RATBAG_PROFILE_CAP_SET_DEFAULT = 101
 
-        The device has the capability to write a name to a profile and store it in its flash.         Any changes uploaded to the device will be cached in libratbag and will be committed to it after a commit only. 
+        This profile can be assigned as the default profile.         A default profile is the profile that is selected when the device is plugged in. Where no profile is assigned as the default profile, the device either picks last-used profile or a specific profile (usually the first). 
+
+
+    .. cpp:enumerator:: RATBAG_PROFILE_CAP_DISABLE 
+
+        The profile can be disabled and enabled.         Profiles are not immediately deleted after being disabled, it is not guaranteed that the device will remember any disabled profiles the next time ratbag runs. Furthermore, the order of profiles may get changed the next time ratbag runs if profiles are disabled.Note that this capability only notes the general capability. A specific profile may still fail to be disabled, e.g. when it is the last enabled profile on the device. 
+
+
+    .. cpp:enumerator:: RATBAG_PROFILE_CAP_WRITE_ONLY 
+
+        The profile information cannot be queried from the hardware.         Where this capability is present, libratbag cannot query the device for its current configuration and the configured resolutions and button mappings are unknown. libratbag will still provide information about the structure of the device such as the number of buttons and resolutions. Clients that encounter a device without this resolution are encouraged to upload a configuration stored on-disk to the device to reset the device to a known state.Any changes uploaded to the device will be cached in libratbag, once a client has sent a full configuration to the device libratbag can be used to query the device as normal. 
 
 ratbag_resolution_capability
 ---------------------------------------
