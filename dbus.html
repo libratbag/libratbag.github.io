@@ -181,7 +181,7 @@ a <a class="reference internal" href="#Resync" title="Resync"><code class="xref 
 all properties are updated accordingly.</li>
 </ol>
 <p>The time it takes to write settings to a device varies greatly, any caller
-must be prepared to receive a <a class="reference internal" href="#Resync" title="Resync"><code class="xref py py-func docutils literal notranslate"><span class="pre">org.freedesktop.ratbag1.Resync</span></code></a> signal several seconds after
+must be prepared to receive a <a class="reference internal" href="#Resync" title="Resync"><code class="xref py py-func docutils literal notranslate"><span class="pre">org.freedesktop.ratbag1.Device.Resync</span></code></a> signal several seconds after
 <a class="reference internal" href="#Commit" title="Commit"><code class="xref py py-func docutils literal notranslate"><span class="pre">org.freedesktop.ratbag1.Device.Commit()</span></code></a>.</p>
 <div class="section" id="notes-on-the-dbus-api">
 <h2>Notes on the DBus API<a class="headerlink" href="#notes-on-the-dbus-api" title="Permalink to this headline">¶</a></h2>
@@ -305,7 +305,7 @@ by an decimal version number of unspecified length. These four
 elements are separated by a colon (<code class="docutils literal notranslate"><span class="pre">:</span></code>).</p>
 <p>For the string <code class="docutils literal notranslate"><span class="pre">unknown</span></code>, the model of the device cannot be
 determined. This is usually a bug in libratbag.</p>
-<p>For <code class="docutils literal notranslate"><span class="pre">DeviceId``s</span> <span class="pre">of</span> <span class="pre">type</span> <span class="pre">``usb</span></code> and <code class="docutils literal notranslate"><span class="pre">bluetooth</span></code>, the version
+<p>For a <code class="docutils literal notranslate"><span class="pre">Model</span></code> of type <code class="docutils literal notranslate"><span class="pre">usb</span></code> and <code class="docutils literal notranslate"><span class="pre">bluetooth</span></code>, the version
 number is reserved for use by libratbag. Device with identical
 vendor and product IDs but different versions must be considered
 different devices. For example, the version may increase when a
@@ -328,24 +328,6 @@ devices).</p>
 </tbody>
 </table>
 <p>The device’s name, suitable for presentation to the user.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="Capabilities">
-<code class="descname">Capabilities</code><a class="headerlink" href="#Capabilities" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">au</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Flags:</th><td class="field-body">read-only, constant</td>
-</tr>
-</tbody>
-</table>
-<p>The capabilities supported by this device. see
-<code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">ratbag_device_capability</span></code> in libratbag-enums.h for the
-list of permissible capabilities.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -449,6 +431,25 @@ a good thing to rebind everything before calling
 </dd></dl>
 
 <dl class="attribute">
+<dt id="IsActive">
+<code class="descname">IsActive</code><a class="headerlink" href="#IsActive" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">b</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Flags:</th><td class="field-body">read-only, mutable</td>
+</tr>
+</tbody>
+</table>
+<p>True if this is the currently active profile, false otherwise.</p>
+<p>Profiles can only be set to active, but never to not active - at least one
+profile must be active at all times. This property is read-only, use the
+<a class="reference internal" href="#SetActive" title="SetActive"><code class="xref py py-func docutils literal notranslate"><span class="pre">SetActive()</span></code></a> method to activate a profile.</p>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="Resolutions">
 <code class="descname">Resolutions</code><a class="headerlink" href="#Resolutions" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
@@ -501,25 +502,6 @@ resolutions.</p>
 <a class="reference internal" href="#led"><span class="std std-ref">org.freedesktop.ratbag1.Led</span></a>.</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="IsActive">
-<code class="descname">IsActive</code><a class="headerlink" href="#IsActive" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">b</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Flags:</th><td class="field-body">read-only, mutable</td>
-</tr>
-</tbody>
-</table>
-<p>True if this is the currently active profile, false otherwise.</p>
-<p>Profiles can only be set to active, but never to not active - at least one
-profile must be active at all times. This property is read-only, use the
-<a class="reference internal" href="#SetActive" title="SetActive"><code class="xref py py-func docutils literal notranslate"><span class="pre">SetActive()</span></code></a> method to activate a profile.</p>
-</dd></dl>
-
 <dl class="function">
 <dt id="SetActive">
 <code class="descname">SetActive</code><span class="sig-paren">(</span><em>) → (</em><span class="sig-paren">)</span><a class="headerlink" href="#SetActive" title="Permalink to this definition">¶</a></dt>
@@ -546,8 +528,8 @@ profile must be active at all times. This property is read-only, use the
 </dd></dl>
 
 <dl class="attribute">
-<dt>
-<code class="descname">Capabilities</code></dt>
+<dt id="Capabilities">
+<code class="descname">Capabilities</code><a class="headerlink" href="#Capabilities" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -859,22 +841,6 @@ for ActionType on the current device</p>
 </table>
 <p>A list of modes supported by this LED, see
 <a class="reference internal" href="enums.html#_CPPv315ratbag_led_mode" title="ratbag_led_mode"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">ratbag_led_mode</span></code></a>.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="Type">
-<code class="descname">Type</code><a class="headerlink" href="#Type" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">u</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Flags:</th><td class="field-body">read-only, mutable</td>
-</tr>
-</tbody>
-</table>
-<p>The LED type, see <a class="reference internal" href="enums.html#_CPPv315ratbag_led_type" title="ratbag_led_type"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">ratbag_led_type</span></code></a>.</p>
 </dd></dl>
 
 <dl class="attribute">
