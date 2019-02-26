@@ -595,17 +595,21 @@ the default resolution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">uu</td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">v</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Flags:</th><td class="field-body">read-write, mutable</td>
 </tr>
 </tbody>
 </table>
-<p>uint for the x and y resolution assigned to this entry,
-respectively.  The value for the resolution must be equal to
-one of the values in <a class="reference internal" href="#Resolutions" title="Resolutions"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Resolutions</span></code></a>.</p>
-<p>If the resolution does not support separate x/y resolutions,
-x and y must be the same value.</p>
+<p>The resolution for this entry in dpi.</p>
+<p>If the variant is a single unsigned integer (<code class="docutils literal notranslate"><span class="pre">u</span></code>), the value is
+the resolution for both the x- and the y- axis.</p>
+<p>If the variant is a unsigned integer tuple (<code class="docutils literal notranslate"><span class="pre">(uu)</span></code>), the value is
+the resolution for the x- and y- axis separately.</p>
+<p>A client must leave the type intact, assigning a single <code class="docutils literal notranslate"><span class="pre">u</span></code> to a
+resolution object previously exporting <code class="docutils literal notranslate"><span class="pre">(uu)</span></code> is invalid.</p>
+<p>The value for the resolution must be equal to one of the values in
+<a class="reference internal" href="#Resolutions" title="Resolutions"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Resolutions</span></code></a>.</p>
 </dd></dl>
 
 <dl class="attribute">
