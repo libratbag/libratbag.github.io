@@ -502,6 +502,43 @@ resolutions.</p>
 <a class="reference internal" href="#led"><span class="std std-ref">org.freedesktop.ratbag1.Led</span></a>.</p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="ReportRate">
+<code class="descname">ReportRate</code><a class="headerlink" href="#ReportRate" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">u</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Flags:</th><td class="field-body">read-write, mutable</td>
+</tr>
+</tbody>
+</table>
+<p>uint for the report rate in Hz assigned to this profile. This rate
+must be one of those listed in <a class="reference internal" href="#ReportRates" title="ReportRates"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ReportRates</span></code></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ReportRates">
+<code class="descname">ReportRates</code><a class="headerlink" href="#ReportRates" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">au</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Flags:</th><td class="field-body">read-write, constant</td>
+</tr>
+</tbody>
+</table>
+<p>A list of permitted report rates. Values in this list may be used
+in the <a class="reference internal" href="#ReportRate" title="ReportRate"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ReportRate</span></code></a> property. This list is always sorted
+ascending, the lowest report rate is the first item in the list.</p>
+<p>This list may be empty if the device does not support reading and/or
+writing to resolutions.</p>
+</dd></dl>
+
 <dl class="function">
 <dt id="SetActive">
 <code class="descname">SetActive</code><span class="sig-paren">(</span><em>) → (</em><span class="sig-paren">)</span><a class="headerlink" href="#SetActive" title="Permalink to this definition">¶</a></dt>
@@ -628,45 +665,6 @@ resolution object previously exporting <code class="docutils literal notranslate
 <p>A list of permitted resolutions. Values in this list may be used in
 the <a class="reference internal" href="#Resolution" title="Resolution"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Resolution</span></code></a> property. This list is always sorted
 ascending, the lowest resolution is the first item in the list.</p>
-<p>This list may be empty if the device does not support reading and/or
-writing to resolutions.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="ReportRate">
-<code class="descname">ReportRate</code><a class="headerlink" href="#ReportRate" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">u</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Flags:</th><td class="field-body">read-write, mutable</td>
-</tr>
-</tbody>
-</table>
-<p>uint for the report rate in Hz assigned to this entry</p>
-<p>If the resolution does not have the individual report rate
-capability, changing the report rate on one resolution will
-change the report rate on all resolutions.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="ReportRates">
-<code class="descname">ReportRates</code><a class="headerlink" href="#ReportRates" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">au</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Flags:</th><td class="field-body">read-write, constant</td>
-</tr>
-</tbody>
-</table>
-<p>A list of permitted report rates. Values in this list may be used
-in the <a class="reference internal" href="#ReportRate" title="ReportRate"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ReportRate</span></code></a> property. This list is always sorted
-ascending, the lowest report rate is the first item in the list.</p>
 <p>This list may be empty if the device does not support reading and/or
 writing to resolutions.</p>
 </dd></dl>

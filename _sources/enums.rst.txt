@@ -80,12 +80,7 @@ ratbag_resolution_capability
 .. cpp:enum:: ratbag_resolution_capability
 
 
-    .. cpp:enumerator:: RATBAG_RESOLUTION_CAP_INDIVIDUAL_REPORT_RATE = 1
-
-        The report rate can be set per resolution mode.         If this property is not available, all resolutions within the same profile have the same report rate and changing one changes the others. 
-
-
-    .. cpp:enumerator:: RATBAG_RESOLUTION_CAP_SEPARATE_XY_RESOLUTION 
+    .. cpp:enumerator:: RATBAG_RESOLUTION_CAP_SEPARATE_XY_RESOLUTION = 1
 
         The resolution can be set for x and y separately. 
 
