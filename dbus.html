@@ -684,72 +684,30 @@ writing to resolutions.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="ButtonMapping">
-<code class="descname">ButtonMapping</code><a class="headerlink" href="#ButtonMapping" title="Permalink to this definition">¶</a></dt>
+<dt id="Mapping">
+<code class="descname">Mapping</code><a class="headerlink" href="#Mapping" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">u</td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(uv)</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Flags:</th><td class="field-body">read-write, mutable</td>
 </tr>
 </tbody>
 </table>
-<p>uint of the current button mapping (if mapping to button)</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="SpecialMapping">
-<code class="descname">SpecialMapping</code><a class="headerlink" href="#SpecialMapping" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">u</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Flags:</th><td class="field-body">read-write, mutable</td>
-</tr>
-</tbody>
-</table>
-<p>Enum describing the current special mapping (if mapped to special)</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="Macro">
-<code class="descname">Macro</code><a class="headerlink" href="#Macro" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">a(uu)</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Flags:</th><td class="field-body">read-write, mutable</td>
-</tr>
-</tbody>
-</table>
-<p>Array of (type, keycode), where type may be one of
-<a class="reference internal" href="enums.html#_CPPv3N23ratbag_macro_event_type30RATBAG_MACRO_EVENT_KEY_PRESSEDE" title="RATBAG_MACRO_EVENT_KEY_PRESSED"><code class="xref cpp cpp-enumerator docutils literal notranslate"><span class="pre">RATBAG_MACRO_EVENT_KEY_PRESSED</span></code></a> or
+<p>The current button mapping. The first element is the ActionType
+selected for this button.</p>
+<p>If the ActionType is Button, the variant is an unsigned integer
+(<code class="docutils literal notranslate"><span class="pre">u</span></code>) denoting the button number to map to.</p>
+<p>If the ActionType is Special, the variant is an unsigned integer
+(<code class="docutils literal notranslate"><span class="pre">u</span></code>) denoting the special value to map to.</p>
+<p>If the ActionType is Macro, the variant is an array of integer
+tuples (<code class="docutils literal notranslate"><span class="pre">a(uu)</span></code>) where each tuple is <code class="docutils literal notranslate"><span class="pre">(type,</span> <span class="pre">keycode)</span></code> and the
+type is one of <a class="reference internal" href="enums.html#_CPPv3N23ratbag_macro_event_type30RATBAG_MACRO_EVENT_KEY_PRESSEDE" title="RATBAG_MACRO_EVENT_KEY_PRESSED"><code class="xref cpp cpp-enumerator docutils literal notranslate"><span class="pre">RATBAG_MACRO_EVENT_KEY_PRESSED</span></code></a> or
 <a class="reference internal" href="enums.html#_CPPv3N23ratbag_macro_event_type31RATBAG_MACRO_EVENT_KEY_RELEASEDE" title="RATBAG_MACRO_EVENT_KEY_RELEASED"><code class="xref cpp cpp-enumerator docutils literal notranslate"><span class="pre">RATBAG_MACRO_EVENT_KEY_RELEASED</span></code></a>.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="ActionType">
-<code class="descname">ActionType</code><a class="headerlink" href="#ActionType" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">u</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Flags:</th><td class="field-body">read-only, mutable</td>
-</tr>
-</tbody>
-</table>
-<p>An enum describing the action type of the button, see
-<a class="reference internal" href="enums.html#_CPPv325ratbag_button_action_type" title="ratbag_button_action_type"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">ratbag_button_action_type</span></code></a> for the list of enums.
-This decides which one of <a class="reference internal" href="#ButtonMapping" title="ButtonMapping"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ButtonMapping</span></code></a>,
-<a class="reference internal" href="#SpecialMapping" title="SpecialMapping"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SpecialMapping</span></code></a> and <a class="reference internal" href="#Macro" title="Macro"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Macro</span></code></a> has a value.</p>
+<p>If the ActionType is Unknown, the variant is an unsigned integer
+(<code class="docutils literal notranslate"><span class="pre">u</span></code>) of value 0.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -766,7 +724,7 @@ This decides which one of <a class="reference internal" href="#ButtonMapping" ti
 </tbody>
 </table>
 <p>Array of <a class="reference internal" href="enums.html#_CPPv325ratbag_button_action_type" title="ratbag_button_action_type"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">ratbag_button_action_type</span></code></a>, possible values
-for ActionType on the current device</p>
+for ActionType on the current device.</p>
 </dd></dl>
 
 <dl class="function">
