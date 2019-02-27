@@ -433,7 +433,7 @@ ratbag_led_colordepth
 .. cpp:enum:: ratbag_led_colordepth
 
 
-    .. cpp:enumerator:: RATBAG_LED_COLORDEPTH_MONOCHROME = 400
+    .. cpp:enumerator:: RATBAG_LED_COLORDEPTH_MONOCHROME = 0
 
         The device only supports a single color.         All color components should be set to 255. 
 

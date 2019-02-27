@@ -293,12 +293,12 @@ for devices of that model.</p>
 </ul>
 <p>In the future, other formats may get added. Clients must ignore
 unknown string formats.</p>
-<p>For a string starting with <cite>usb:</cite>, the format is the bus type (USB)
+<p>For a string starting with <code class="docutils literal notranslate"><span class="pre">usb:</span></code>, the format is the bus type (USB)
 followed by a 4-digit lowercase hex USB vendor ID, followed by a
 4-digit lowercase hex USB product ID, followed by an decimal version
 number of unspecified length. These four elements are separated by a
 colon (<code class="docutils literal notranslate"><span class="pre">:</span></code>).</p>
-<p>For a string starting with <cite>bluetooth:</cite>, the format is the bus type
+<p>For a string starting with <code class="docutils literal notranslate"><span class="pre">bluetooth:</span></code>, the format is the bus type
 (Bluetooth) followed by a 4-digit lowercase hex Bluetooth vendor ID,
 followed by a 4-digit lowercase hex Bluetooth product ID, followed
 by an decimal version number of unspecified length. These four
@@ -826,8 +826,7 @@ for ActionType on the current device</p>
 </tr>
 </tbody>
 </table>
-<p>Enum describing the current mode, see
-<a class="reference internal" href="enums.html#_CPPv315ratbag_led_mode" title="ratbag_led_mode"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">ratbag_led_mode</span></code></a>.</p>
+<p>Enum describing the current mode, see <a class="reference internal" href="#Modes" title="Modes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Modes</span></code></a>.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -843,8 +842,36 @@ for ActionType on the current device</p>
 </tr>
 </tbody>
 </table>
-<p>A list of modes supported by this LED, see
-<a class="reference internal" href="enums.html#_CPPv315ratbag_led_mode" title="ratbag_led_mode"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">ratbag_led_mode</span></code></a>.</p>
+<p>A list of modes supported by this LED.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="84%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value</th>
+<th class="head">Definition</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>LED is off</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>LED is on with constant brightness</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>LED cycles through a set of colors.
+This mode ignores the <a class="reference internal" href="#Color" title="Color"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Color</span></code></a>
+values.</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>LED uses a breathing-style animation</td>
+</tr>
+</tbody>
+</table>
+<p>In the future, extra values may get added. Clients must ignore
+unknown Modes.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -860,7 +887,10 @@ for ActionType on the current device</p>
 </tr>
 </tbody>
 </table>
-<p>uint triplet (RGB) of the LED’s color</p>
+<p>32-bit unsigned int triplet (RGB) of the LED’s color. Only the least
+significant bits are valid, the <a class="reference internal" href="#ColorDepth" title="ColorDepth"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ColorDepth</span></code></a> property defines
+the number of bits for each color. When writing to this property,
+all bits outside the color depth must be 0.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -876,7 +906,32 @@ for ActionType on the current device</p>
 </tr>
 </tbody>
 </table>
-<p>The color depth of this LED, see <a class="reference internal" href="enums.html#_CPPv321ratbag_led_colordepth" title="ratbag_led_colordepth"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">ratbag_led_colordepth</span></code></a>.</p>
+<p>An enum specifying the color depth of this LED. Permitted values are:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="82%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value</th>
+<th class="head">Definition</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>0 bits per color (monochrome)</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>8 bits per color</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>1 bit per color</td>
+</tr>
+</tbody>
+</table>
+<p>In the future, extra values may get added. Clients must ignore
+unknown <code class="docutils literal notranslate"><span class="pre">ColorDepths</span></code> and not manipulate the LED color where
+the <code class="docutils literal notranslate"><span class="pre">ColorDepth</span></code> is unknown.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -908,7 +963,10 @@ for ActionType on the current device</p>
 </tr>
 </tbody>
 </table>
-<p>The brightness of the LED, possible values are in the range 0 - 255</p>
+<p>The brightness of the LED, normalized to the range 0-255, inclusive.
+Where the LED supports less than 8-bit of brightness, libratbag maps
+the value to a device-supported value in an implementation-defined
+manner.</p>
 </dd></dl>
 
 </div>
