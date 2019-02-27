@@ -29,7 +29,6 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Enumerations" href="enums.html" />
     <link rel="prev" title="The libratbag DBus API" href="index.html" /> 
 
   
@@ -93,9 +92,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#org-freedesktop-ratbag1-resolution">org.freedesktop.ratbag1.Resolution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#org-freedesktop-ratbag1-button">org.freedesktop.ratbag1.Button</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#org-freedesktop-ratbag1-led">org.freedesktop.ratbag1.Led</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#special-button-functions">Special button functions</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="enums.html">  Enumerations</a></li>
 </ul>
 
             
@@ -185,7 +184,6 @@ must be prepared to receive a <a class="reference internal" href="#Resync" title
 <a class="reference internal" href="#Commit" title="Commit"><code class="xref py py-func docutils literal notranslate"><span class="pre">org.freedesktop.ratbag1.Device.Commit()</span></code></a>.</p>
 <div class="section" id="notes-on-the-dbus-api">
 <h2>Notes on the DBus API<a class="headerlink" href="#notes-on-the-dbus-api" title="Permalink to this headline">¶</a></h2>
-<p>Values listed as enums are defined in <a class="reference external" href="https://github.com/libratbag/libratbag/blob/master/src/libratbag-enums.h">libratbag-enums.h</a></p>
 <p>For easier debugging, objects paths are constructed from the device. e.g.
 <code class="docutils literal notranslate"><span class="pre">/org/freedesktop/ratbag/button/event5/p0/b10</span></code> is the button interface for
 button 10 on profile 0 on event5. The naming is subject to change. Do not
@@ -696,17 +694,35 @@ writing to resolutions.</p>
 </tr>
 </tbody>
 </table>
-<p>The current button mapping. The first element is the ActionType
-selected for this button.</p>
-<p>If the ActionType is Button, the variant is an unsigned integer
+<p>The current button mapping. The first element is the <code class="docutils literal notranslate"><span class="pre">ActionType</span></code>
+for this button and must be one of those in <a class="reference internal" href="#ActionTypes" title="ActionTypes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ActionTypes</span></code></a>.</p>
+<p>If the ActionType is <em>Button</em>, the variant is an unsigned integer
 (<code class="docutils literal notranslate"><span class="pre">u</span></code>) denoting the button number to map to.</p>
-<p>If the ActionType is Special, the variant is an unsigned integer
+<p>If the ActionType is <em>Special</em>, the variant is an unsigned integer
 (<code class="docutils literal notranslate"><span class="pre">u</span></code>) denoting the special value to map to.</p>
-<p>If the ActionType is Macro, the variant is an array of integer
+<p>If the ActionType is <em>Macro</em>, the variant is an array of integer
 tuples (<code class="docutils literal notranslate"><span class="pre">a(uu)</span></code>) where each tuple is <code class="docutils literal notranslate"><span class="pre">(type,</span> <span class="pre">keycode)</span></code> and the
-type is one of <a class="reference internal" href="enums.html#_CPPv3N23ratbag_macro_event_type30RATBAG_MACRO_EVENT_KEY_PRESSEDE" title="RATBAG_MACRO_EVENT_KEY_PRESSED"><code class="xref cpp cpp-enumerator docutils literal notranslate"><span class="pre">RATBAG_MACRO_EVENT_KEY_PRESSED</span></code></a> or
-<a class="reference internal" href="enums.html#_CPPv3N23ratbag_macro_event_type31RATBAG_MACRO_EVENT_KEY_RELEASEDE" title="RATBAG_MACRO_EVENT_KEY_RELEASED"><code class="xref cpp cpp-enumerator docutils literal notranslate"><span class="pre">RATBAG_MACRO_EVENT_KEY_RELEASED</span></code></a>.</p>
-<p>If the ActionType is Unknown, the variant is an unsigned integer
+type is one of the following:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>Key release event</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>Key press event</td>
+</tr>
+</tbody>
+</table>
+<p>If the ActionType is <em>Unknown</em>, the variant is an unsigned integer
 (<code class="docutils literal notranslate"><span class="pre">u</span></code>) of value 0.</p>
 </dd></dl>
 
@@ -723,8 +739,44 @@ type is one of <a class="reference internal" href="enums.html#_CPPv3N23ratbag_ma
 </tr>
 </tbody>
 </table>
-<p>Array of <a class="reference internal" href="enums.html#_CPPv325ratbag_button_action_type" title="ratbag_button_action_type"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">ratbag_button_action_type</span></code></a>, possible values
-for ActionType on the current device.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="16%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value</th>
+<th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>None</td>
+<td>No mapping configured</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>Button</td>
+<td>Mapping to a logical button number</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>Special</td>
+<td>Mapping to a special function</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>Macro</td>
+<td>Mapping to a macro key sequence</td>
+</tr>
+<tr class="row-even"><td>1000</td>
+<td>Unknown</td>
+<td>An unknown or unreadable mapping type</td>
+</tr>
+</tbody>
+</table>
+<p>See <a class="reference internal" href="#button-special"><span class="std std-ref">Special button functions</span></a> for a list of supported special
+functions.</p>
+<p>Clients must ignore <a class="reference internal" href="#ActionTypes" title="ActionTypes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ActionTypes</span></code></a> unknown to them.</p>
 </dd></dl>
 
 <dl class="function">
@@ -909,6 +961,104 @@ manner.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="special-button-functions">
+<span id="button-special"></span><h2>Special button functions<a class="headerlink" href="#special-button-functions" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>All special button function values are based on the value
+<code class="docutils literal notranslate"><span class="pre">0x40000000</span></code> (<code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">&lt;&lt;</span> <span class="pre">30</span></code>).</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="16%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Offset</th>
+<th class="head">Value</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>0x40000000</td>
+<td>Unknown</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>0x40000001</td>
+<td>Doublelick</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>0x40000002</td>
+<td>Wheel left</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>0x40000003</td>
+<td>Wheel right</td>
+</tr>
+<tr class="row-even"><td>4</td>
+<td>0x40000004</td>
+<td>Wheel up</td>
+</tr>
+<tr class="row-odd"><td>5</td>
+<td>0x40000005</td>
+<td>Wheel down</td>
+</tr>
+<tr class="row-even"><td>6</td>
+<td>0x40000006</td>
+<td>Ratchet mode switch</td>
+</tr>
+<tr class="row-odd"><td>7</td>
+<td>0x40000007</td>
+<td>Resolution cycle up</td>
+</tr>
+<tr class="row-even"><td>8</td>
+<td>0x40000008</td>
+<td>Resolution cycle down</td>
+</tr>
+<tr class="row-odd"><td>9</td>
+<td>0x40000009</td>
+<td>Resolution up</td>
+</tr>
+<tr class="row-even"><td>10</td>
+<td>0x4000000a</td>
+<td>Resolution down</td>
+</tr>
+<tr class="row-odd"><td>11</td>
+<td>0x4000000b</td>
+<td>Resolution alternate</td>
+</tr>
+<tr class="row-even"><td>12</td>
+<td>0x4000000c</td>
+<td>Resolution default</td>
+</tr>
+<tr class="row-odd"><td>13</td>
+<td>0x4000000d</td>
+<td>Profile cycle up</td>
+</tr>
+<tr class="row-even"><td>14</td>
+<td>0x4000000e</td>
+<td>Profile cycle down</td>
+</tr>
+<tr class="row-odd"><td>15</td>
+<td>0x4000000f</td>
+<td>Profile up</td>
+</tr>
+<tr class="row-even"><td>16</td>
+<td>0x40000010</td>
+<td>Profile down</td>
+</tr>
+<tr class="row-odd"><td>17</td>
+<td>0x40000011</td>
+<td>Second mode</td>
+</tr>
+<tr class="row-even"><td>18</td>
+<td>0x40000012</td>
+<td>Battery level</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
 </div>
 
 
@@ -918,8 +1068,6 @@ manner.</p>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="enums.html" class="btn btn-neutral float-right" title="Enumerations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="The libratbag DBus API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
